@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=EntradaIF
+comment1.params=
+comment1.target=float\ getPrecio()
+comment2.params=
+comment2.target=java.util.Date\ getDate()
+comment3.params=
+comment3.target=boolean\ getVIP()
+comment4.params=
+comment4.target=void\ setVIP()
+comment5.params=
+comment5.target=java.lang.String\ getTipo()
+comment6.params=tipo
+comment6.target=void\ setTipo(java.lang.String)
+comment7.params=
+comment7.target=boolean\ getFamilia()
+comment8.params=
+comment8.target=void\ setFamilia()
+comment9.params=descuento
+comment9.target=void\ applyDescuento(float)
+numComments=10

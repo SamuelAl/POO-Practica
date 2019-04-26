@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.target=Adulto
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Adulto\ here.\r\n\r\n\ @author\ (Samuel\ Alarco)\r\n\ @version\ (v1.0)\r\n
+comment1.params=edad\ dni
+comment1.target=Adulto(int,\ java.lang.String)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Adulto\r\n
+comment2.params=
+comment2.target=void\ setEstudiante()
+comment2.text=\r\n\ Metodo\ setter\ para\ atributo\ de\r\n\ esEstudiante\ \r\n\ esEstudiante\ \=\ true;\r\n\r\n
+comment3.params=
+comment3.target=boolean\ getEstudiante()
+comment3.text=\r\n\ Metodo\ getter\ que\ devuelve\ si\ el\r\n\ visitante\ es\ un\ estudiante\r\n\r\n\ @return\ \ \ \ atributo\ esEstudiante\r\n
+comment4.params=
+comment4.target=void\ setDescapacitado()
+comment4.text=\r\n\ Metodo\ setter\ para\ atributo\ de\r\n\ esDescapacitado\r\n\ esDescapacitado\ \=\ true;\r\n\r\n
+comment5.params=
+comment5.target=boolean\ getDescapacitado()
+comment5.text=\r\n\ Metodo\ getter\ que\ devuelve\ si\ el\r\n\ visitante\ tiene\ diversidad\ funcional\r\n\r\n\ @return\ \ \ \ atributo\ esDescapacitado\r\n
+comment6.params=
+comment6.target=void\ setDesempleado()
+comment6.text=\r\n\ Metodo\ setter\ para\ atributo\ de\r\n\ esDesempleado\r\n\ esDesempleado\ \=\ true;\r\n\r\n
+comment7.params=
+comment7.target=boolean\ getDesempleado()
+comment7.text=\r\n\ Metodo\ getter\ que\ devuelve\ si\ el\r\n\ visitante\ es\ desempleado\r\n\r\n\ @return\ \ \ \ atributo\ esDesemplado\r\n
+comment8.params=entrada
+comment8.target=void\ comprarEntrada(EntradaIF)
+numComments=9

@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=Discapacitado
+comment1.params=fecha\ edad
+comment1.target=Discapacitado(java.time.LocalDate,\ int)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Discapacitado\r\n
+comment2.params=
+comment2.target=float\ getBasePrecio()
+comment3.params=descuento
+comment3.target=void\ applyDescuento(float)
+comment4.params=
+comment4.target=TiposEntradas\ getTipo()
+numComments=5

@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=MaquinaEntradas
+comment1.params=
+comment1.target=MaquinaEntradas()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ MaquinaEntradas\r\n
+comment2.params=fecha\ edad\ isVIP\ isFamilia\ descuento
+comment2.target=Entrada\ nuevaEntrada(java.time.LocalDate,\ int,\ boolean,\ boolean,\ java.lang.String)
+comment3.params=
+comment3.target=void\ setFamilia()
+comment4.params=
+comment4.target=void\ setVIP()
+comment5.params=descuento
+comment5.target=void\ setDescuento(java.lang.String)
+comment6.params=fecha\ edad\ isVIP\ isFamilia\ descuento\ acompa\u00F1ante
+comment6.target=Entrada\ nuevaEntradaNi\u00F1o(java.time.LocalDate,\ int,\ boolean,\ boolean,\ java.lang.String,\ Entrada)
+numComments=7

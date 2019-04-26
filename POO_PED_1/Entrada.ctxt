@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.target=Entrada
+comment1.params=fecha
+comment1.target=Entrada(java.util.Date)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Entrada\r\n
+comment10.params=descuento
+comment10.target=void\ applyDescuento(float)
+comment2.params=
+comment2.target=float\ getPrecio()
+comment3.params=
+comment3.target=java.util.Date\ getDate()
+comment4.params=
+comment4.target=boolean\ getVIP()
+comment5.params=
+comment5.target=void\ setVIP()
+comment6.params=
+comment6.target=java.lang.String\ getTipo()
+comment7.params=tipo
+comment7.target=void\ setTipo(java.lang.String)
+comment8.params=
+comment8.target=boolean\ getFamilia()
+comment9.params=
+comment9.target=void\ setFamilia()
+numComments=11

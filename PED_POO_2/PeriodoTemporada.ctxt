@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=PeriodoTemporada
+comment1.params=fInicio\ fFinal
+comment1.target=PeriodoTemporada(java.time.LocalDate,\ java.time.LocalDate)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ PeriodoTemporada\r\n
+comment2.params=fecha
+comment2.target=boolean\ enPeriodo(java.time.LocalDate)
+numComments=3

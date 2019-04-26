@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=Ni\u00F1o
+comment1.params=fecha\ edad\ acompa\u00F1ante
+comment1.target=Ni\u00F1o(java.time.LocalDate,\ int,\ Entrada)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Ni\u00F1o\r\n
+comment2.params=
+comment2.target=float\ getBasePrecio()
+comment3.params=descuento
+comment3.target=void\ applyDescuento(float)
+comment4.params=
+comment4.target=Entrada\ getAcompa\u00F1ante()
+comment5.params=
+comment5.target=TiposEntradas\ getTipo()
+numComments=6
