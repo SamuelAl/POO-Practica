@@ -14,11 +14,13 @@ public class EntradaGen implements EntradaIF
     // instance variables - replace the example below with your own
     protected HashMap<String, Float> descuentosApl;
     protected float precio;
+    protected float descuentoTotal;
     
     private LocalDate fecha;
     private int edad;
     
     private boolean isVIP;
+    private boolean VIPAplicado = false;
     private boolean isFamilia;
     private String temporada;
     
@@ -53,8 +55,31 @@ public class EntradaGen implements EntradaIF
     
     public void applyDescuento(String tipo ,float descuento)
     {
-        precio = precio * ((100 - descuento)/100);
-        descuentosApl.put(tipo, descuento);
+        if (descuentoTotal < 90)
+        {
+            precio = precio * ((100 - descuento)/100);
+            descuentosApl.put(tipo, descuento);
+            descuentoTotal += descuento;
+            if (isVIP && !VIPAplicado) 
+            {
+                if (tipo.equals("senior"))
+                {
+                    precio += (precio * (0.83333));
+                } else if (tipo.equals("niño"))
+                {
+                    precio += (precio * (0.83333));
+                } else 
+                {
+                    precio += PARAMETROS.PRECIO_VIP_BASE;
+                }
+                
+                VIPAplicado = true;
+            }
+        }
+        else
+        {
+            System.out.println("No se pueden aplicar mas descuentos");
+        }
     }
 
     public String getTipo()
@@ -82,19 +107,6 @@ public class EntradaGen implements EntradaIF
     public void setVIP()
     {
         isVIP = true;
-        if (isVIP) 
-        {
-            if (descuentosApl.get("senior") != null)
-            {
-                precio += (precio * (0.83333));
-            } else if (descuentosApl.get("niño") != null)
-            {
-                precio += (precio * (0.83333));
-            } else 
-            {
-                precio += PARAMETROS.PRECIO_VIP_BASE;
-            }
-        }
     }
     
     public String getTemporada()

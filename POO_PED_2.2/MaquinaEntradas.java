@@ -14,6 +14,7 @@ import java.time.LocalDate;
 public class MaquinaEntradas
 {
    private EntradaIF entradaActual;
+   private EntradaGen ultimoAdulto;
    private BuscadorDescuentos buscadorDescuentos;
    
 
@@ -36,7 +37,16 @@ public class MaquinaEntradas
         
         if (isVIP) {setVIP();}
         if (isFamilia) {setFamilia();}
-        if (!descuento.equals("ninguno")) {setDescuento(descuento);}
+        if (!descuento.equals("ninguno")) 
+        {
+            String tmp[] = descuento.split(",");
+            for (int i = 0; i < tmp.length; i++)
+            {
+                setDescuento(tmp[i]);
+            }
+            
+        }
+        ultimoAdulto = (EntradaGen)entrada;
         return entrada;
     }
     
@@ -65,10 +75,10 @@ public class MaquinaEntradas
     
     public EntradaIF nuevaEntradaNiño(LocalDate fecha, int edad, 
                                 boolean isVIP, 
-                               boolean isFamilia, String descuento, 
-                               EntradaGen acompañante)
+                               boolean isFamilia, String descuento 
+                               )
     {
-        EntradaIF entrada = new Niño(fecha, edad, acompañante);
+        EntradaIF entrada = new Niño(fecha, edad, ultimoAdulto);
         entrada.setTemporada();
         
         if (isVIP) {setVIP();}

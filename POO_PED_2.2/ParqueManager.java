@@ -48,8 +48,7 @@ public class ParqueManager
                            String descuento, EntradaGen acompañante)
     {
         EntradaIF entrada = generadorEntradas.nuevaEntradaNiño(fecha, edad,
-                                                    isVIP, isFamilia, descuento,
-                                                   acompañante);
+                                                    isVIP, isFamilia, descuento);
         EntradasParque.add(entrada);
     }
     

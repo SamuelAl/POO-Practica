@@ -1,0 +1,2 @@
+Adulto;45
+Senior;60
