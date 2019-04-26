@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=ParqueManager
+comment1.params=
+comment1.target=ParqueManager()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Parque\r\n
+comment2.params=fecha\ edad\ isVIP\ isFamilia\ descuento
+comment2.target=void\ addEntrada(java.time.LocalDate,\ int,\ boolean,\ boolean,\ java.lang.String)
+comment3.params=fecha\ edad\ isVIP\ isFamilia\ descuento\ acompa\u00F1ante
+comment3.target=void\ addEntrada(java.time.LocalDate,\ int,\ boolean,\ boolean,\ java.lang.String,\ EntradaGen)
+comment4.params=tipo
+comment4.target=void\ addTrabajador(TiposTrabajadores)
+comment5.params=tipo
+comment5.target=void\ addAtraccion(java.lang.String)
+numComments=6
