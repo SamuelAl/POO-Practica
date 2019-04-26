@@ -1,7 +1,7 @@
 #BlueJ class context
-comment0.target=AtraccionB
+comment0.target=AtraccionC
 comment1.params=
-comment1.target=AtraccionB()
+comment1.target=AtraccionC()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ AtraccionTipo\r\n
 comment10.params=
 comment10.target=boolean\ getAccesoNi\u00F1os()

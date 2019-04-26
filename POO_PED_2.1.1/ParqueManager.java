@@ -59,13 +59,9 @@ public class ParqueManager
         TrabajadoresParque.add(trabajador);
     }
     
-    public void addAtraccion(String tipo, boolean accesoVIP, float minAlturaCM,
-                            int minEdad, boolean accesoNiños, int numRespAtracc,
-                            int numAyuAtracc)
+    public void addAtraccion(String tipo)
     {
-        AtraccionIF atraccion = generadorAtracciones.nuevaAtraccion(tipo, accesoVIP, minAlturaCM,
-                            minEdad, accesoNiños, numRespAtracc,
-                            numAyuAtracc);
+        AtraccionIF atraccion = generadorAtracciones.nuevaAtraccion(tipo);
         AtraccionesParque.add(atraccion);
         for (int i = 0; i < atraccion.getNumRespAtracc(); i++)
         {

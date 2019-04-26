@@ -19,18 +19,27 @@ public class CreadorAtracciones
        
     }
 
-    public AtraccionIF nuevaAtraccion(String tipo, boolean accesoVIP, float minAlturaCM,
-                            int minEdad, boolean accesoNiños, int numRespAtracc,
-                            int numAyuAtracc)
+    public AtraccionIF nuevaAtraccion(String tipo)
     {
-        atraccionActual = new Atraccion(tipo);
-        atraccionActual.setVIP(accesoVIP);
-        atraccionActual.setMinAlturaCM(minAlturaCM);
-        atraccionActual.setMinEdad(minEdad);
-        atraccionActual.setAccesoNiños(accesoNiños);
-        atraccionActual.setNumRespAtracc(numRespAtracc);
-        atraccionActual.setNumAyuAtracc(numAyuAtracc);
-        
+        switch(tipo) {
+            case "A":
+                atraccionActual = new AtraccionA();
+                break;
+            case "B":
+                atraccionActual = new AtraccionB();
+                break;
+            case "C":
+                atraccionActual = new AtraccionC();
+                break;
+            case "D":
+                atraccionActual = new AtraccionD();
+                break;
+            case "E":
+                atraccionActual = new AtraccionE();
+                break;
+            default:
+                atraccionActual = new AtraccionA();
+        }
         return atraccionActual;
     }
 }
