@@ -38,7 +38,7 @@ public class AtraccionB implements AtraccionIF
         accesoNiños = false;
         accesoAdultos = true;
         numRespAtracc = 1;
-        numAyuAtracc = 6;
+        numAyuAtracc = 5;
     }
     
     public boolean getVIP()

@@ -70,8 +70,28 @@ public class ParqueManager
         
         for (int i = 0; i < atraccion.getNumAyuAtracc(); i++)
         {
-            TrabajadoresParque.add(generadorTrabajadores.nuevoTrabajador(TiposTrabajadores.RESP_ATRACC));
+            TrabajadoresParque.add(generadorTrabajadores.nuevoTrabajador(TiposTrabajadores.AYU_ATRACC));
         }
+    }
+    
+    public int getNumTrabajadores(TiposTrabajadores tipo)
+    {
+        int n = 0;
+        
+        for (Trabajador trabajador : TrabajadoresParque)
+        {
+            if (trabajador.getTipo() == tipo)
+            {
+                n++;
+            }
+        }
+        
+        return n;
+    }
+    
+    public int getNumTrabajadores()
+    {    
+        return TrabajadoresParque.size();
     }
     
 }
