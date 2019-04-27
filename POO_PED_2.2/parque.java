@@ -17,13 +17,11 @@ public class parque
         for (int i = 0; i < 4; i++)
         {
             manager.addAtraccion("A");
-
         }
         
         for (int i = 0; i < 6; i++)
         {
             manager.addAtraccion("B");
-
         }
         
         for (int i = 0; i < 4; i++)
@@ -41,7 +39,7 @@ public class parque
             manager.addAtraccion("E");
         }
         
-        System.out.println("Numero trabajadores : " + manager.getNumTrabajadores());
+        System.out.println("Numero trabajadores: " + manager.getNumTrabajadores());
         
         nTrabajadores = manager.getNumTrabajadores();
         
