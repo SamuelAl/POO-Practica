@@ -21,6 +21,7 @@ public class AtraccionE implements AtraccionIF
     private int contador;
     
     private List trabajadores;
+    private List usuarios;
 
 
     /**
@@ -30,6 +31,7 @@ public class AtraccionE implements AtraccionIF
     {
         this.tipo = "E";
         trabajadores =  new LinkedList<Trabajador>();
+        usuarios =  new LinkedList<EntradaIF>();
         // Valores default
         accesoVIP = true;
         minAlturaCM = 0; // no minimo de altura
@@ -126,9 +128,18 @@ public class AtraccionE implements AtraccionIF
         trabajadores.add(trabajador);
     }
     
-    public void usar()
+   public void usar(EntradaIF entrada)
     {
         contador++;
+        if (!(((entrada instanceof Niño) && !getAccesoNiños()) || (!(entrada instanceof Niño) && !getAccesoAdultos()))) 
+        {
+            usuarios.add(entrada);
+            System.out.println("Acceso permitido a la atraccion");
+        }
+        else
+        {
+            System.out.println("Acceso denegado a la atraccion");
+        }
     }
 
     

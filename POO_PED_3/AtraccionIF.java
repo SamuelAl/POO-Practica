@@ -51,6 +51,6 @@ public interface AtraccionIF
        
     public void addTrabajador(Trabajador trabajador);
         
-    public void usar();
+    public void usar(EntradaIF entrada);
         
 }

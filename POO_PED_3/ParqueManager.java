@@ -10,6 +10,7 @@
 import java.util.List;
 import java.util.LinkedList;
 import java.time.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class ParqueManager
 
@@ -96,5 +97,29 @@ public class ParqueManager
     public int getNumVisitantes()
     {
         return EntradasParque.size();
+    }
+    
+    public void usarAtraccion(int index, EntradaIF entrada)
+    {
+        AtraccionesParque.get(index).usar(entrada);
+    }
+    
+    //Funcion para generar uso aleatorio de atracciones
+    public void randomUsarAtracciones()
+    {
+        for (AtraccionIF atraccion : AtraccionesParque)
+        {
+            int n = ThreadLocalRandom.current().nextInt(10) + 1;
+            int i = 0;
+            for (EntradaIF entrada: EntradasParque)
+            {
+                if (i%n == 0 || i%n == 2 || i%n == 5)
+                {
+                    atraccion.usar(entrada);
+                }
+                i++;
+            }
+            
+        }
     }
 }
