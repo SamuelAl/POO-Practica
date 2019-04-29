@@ -18,7 +18,7 @@ public class Generador
         Random rand = new Random();
         String line = "";
         
-        String[] tipos = { "carnet joven", "discapacitado", "estudiante", "veterano"};
+        
         try
         {
         FileWriter fw = new FileWriter("Visitantes.txt");
@@ -29,15 +29,15 @@ public class Generador
            
            if (edad < 13)
            {
-               line += "niño" + ";";
+               line += 0 + ";";
            }
            else if (edad > 64)
            {
-               line += "senior" + ";";
+               line += 1 + ";";
            }
            else
            {
-               line += tipos[rand.nextInt(tipos.length)] + ";";
+               line += (rand.nextInt(4) + 2) + ";";
            }   
            
            line += Integer.toString(edad) + ";";//edad

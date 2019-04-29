@@ -35,6 +35,7 @@ public class EntradaGen implements EntradaIF
         this.fecha = fecha;
         this.edad = edad;
         precio = PARAMETROS.PRECIO_BASE;
+        descuentosApl = new HashMap<String, Float>();
     }
     
     /**

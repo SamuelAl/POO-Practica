@@ -43,7 +43,7 @@ public class parque
         
         nTrabajadores = manager.getNumTrabajadores();
         
-        int nAteCl = (int)(nTrabajadores* 0.3);
+        int nAteCl = (int)(nTrabajadores * 0.3);
         
         for (int i = 0; i < nAteCl; i++)
         {
@@ -57,8 +57,10 @@ public class parque
             manager.addTrabajador(TiposTrabajadores.REL_PUBLICAS);
         }
         
-        System.out.println("Numero trabajadores Atencion : " + manager.getNumTrabajadores(TiposTrabajadores.ATENCION_CL));
-        System.out.println("Numero trabajadores Relaciones : " + manager.getNumTrabajadores(TiposTrabajadores.REL_PUBLICAS));
+        System.out.println("Numero trabajadores Atencion: " + manager.getNumTrabajadores(TiposTrabajadores.ATENCION_CL));
+        System.out.println("Numero trabajadores Relaciones: " + manager.getNumTrabajadores(TiposTrabajadores.REL_PUBLICAS));
         
+        GeneradorVisitantes.generarVisitantes(manager);
+        System.out.println("Numero visitantes: " + manager.getNumVisitantes());
     }
 }

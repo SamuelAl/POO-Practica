@@ -9,7 +9,7 @@
 
 import java.util.List;
 import java.util.LinkedList;
-import java.time.*;;
+import java.time.*;
 
 public class ParqueManager
 
@@ -43,9 +43,9 @@ public class ParqueManager
         EntradasParque.add(entrada);
     }
     
-    public void addEntrada(LocalDate fecha, int edad,
+    public void addEntradaNiño(LocalDate fecha, int edad,
                            boolean isVIP, boolean isFamilia, 
-                           String descuento, EntradaGen acompañante)
+                           String descuento)
     {
         EntradaIF entrada = generadorEntradas.nuevaEntradaNiño(fecha, edad,
                                                     isVIP, isFamilia, descuento);
@@ -93,4 +93,8 @@ public class ParqueManager
         return TrabajadoresParque.size();
     }
     
+    public int getNumVisitantes()
+    {
+        return EntradasParque.size();
+    }
 }

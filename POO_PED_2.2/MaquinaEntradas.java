@@ -75,8 +75,7 @@ public class MaquinaEntradas
     
     public EntradaIF nuevaEntradaNiño(LocalDate fecha, int edad, 
                                 boolean isVIP, 
-                               boolean isFamilia, String descuento 
-                               )
+                               boolean isFamilia, String descuento)
     {
         EntradaIF entrada = new Niño(fecha, edad, ultimoAdulto);
         entrada.setTemporada();

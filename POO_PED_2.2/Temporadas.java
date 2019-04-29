@@ -24,13 +24,15 @@ public class Temporadas
         mapaDescuentosTemporadas.put("tempBaja", 85f);
         mapaDescuentosTemporadas.put("tempMedia", 100f);
         
-        mapaTemporadas.put(new PeriodoTemporada(LocalDate.of(1,1,2019), LocalDate.of(8,1,2019)), "tempAlta");
-        mapaTemporadas.put(new PeriodoTemporada(LocalDate.of(15, 4, 2019), LocalDate.of(21, 4, 2019)), "tempAlta");
-        mapaTemporadas.put(new PeriodoTemporada(LocalDate.of(1, 4, 2019), LocalDate.of(30, 4, 2019)), "tempAlta");
-        mapaTemporadas.put(new PeriodoTemporada(LocalDate.of(1, 8, 2019), LocalDate.of(31, 8, 2019)), "tempAlta");
-        mapaTemporadas.put(new PeriodoTemporada(LocalDate.of(1, 12, 2019), LocalDate.of(31, 12, 2019)), "tempAlta");
-        mapaTemporadas.put(new PeriodoTemporada(LocalDate.of(1, 2, 2019), LocalDate.of(28, 2, 2019)), "tempBaja");
-        mapaTemporadas.put(new PeriodoTemporada(LocalDate.of(1, 11, 2019), LocalDate.of(31, 11, 2019)), "tempBaja");
+        mapaTemporadas = new HashMap<PeriodoTemporada, String>();
+        
+        mapaTemporadas.put(new PeriodoTemporada(LocalDate.of(2019, Month.JANUARY, 1), LocalDate.of(2019, Month.JANUARY, 8)), "tempAlta");
+        mapaTemporadas.put(new PeriodoTemporada(LocalDate.of(2019, Month.APRIL, 15), LocalDate.of(2019, Month.APRIL, 21)), "tempAlta");
+        mapaTemporadas.put(new PeriodoTemporada(LocalDate.of(2019, Month.APRIL, 1), LocalDate.of(2019, Month.APRIL, 30)), "tempAlta");
+        mapaTemporadas.put(new PeriodoTemporada(LocalDate.of(2019, Month.AUGUST, 1), LocalDate.of(2019, Month.AUGUST, 31)), "tempAlta");
+        mapaTemporadas.put(new PeriodoTemporada(LocalDate.of(2019, Month.DECEMBER, 1), LocalDate.of(2019, Month.DECEMBER, 31)), "tempAlta");
+        mapaTemporadas.put(new PeriodoTemporada(LocalDate.of(2019, Month.FEBRUARY, 1), LocalDate.of(2019, Month.FEBRUARY, 28)), "tempBaja");
+        mapaTemporadas.put(new PeriodoTemporada(LocalDate.of(2019, Month.NOVEMBER, 1), LocalDate.of(2019, Month.NOVEMBER, 30)), "tempBaja");
     }
 
    public float get(String key)
