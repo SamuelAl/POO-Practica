@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=Ni\u00F1o
+comment1.params=fecha\ edad\ acompa\u00F1ante
+comment1.target=Ni\u00F1o(java.time.LocalDate,\ int,\ EntradaGen)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Ni\u00F1o\r\n
+comment2.params=
+comment2.target=EntradaGen\ getAcompa\u00F1ante()
+numComments=3
