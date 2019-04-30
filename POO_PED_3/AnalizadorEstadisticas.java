@@ -1,4 +1,5 @@
 
+
 /**
  * Write a description of class AnalizadorEstadisticas here.
  *
@@ -35,69 +36,191 @@ public class AnalizadorEstadisticas
     {
         int dia = ListaEntradas.get(0).getDate().getDayOfMonth();
         int month = ListaEntradas.get(0).getDate().getMonthValue();
+        int daysInMonth = ListaEntradas.get(0).getDate().lengthOfMonth();
         TemporalField woy = WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear();
         int semana = ListaEntradas.get(0).getDate().get(woy);
+        int anno = ListaEntradas.get(0).getDate().getYear();
+        
         int contadorDia = 0;
         int contadorSemana = 0;
         int contadorMes = 0;
         int contadorAnno = 0;
+        
+        float promedioSemanal = 0;
+        float promedioMes = 0;
+        float promedioAnno = 0;
+        
+        LocalDate ultimaFecha = ListaEntradas.get(ListaEntradas.size()-1).getDate();
+        
+        System.out.println("Año: " + anno);
         System.out.println("Mes: " + month);
         System.out.println("  Semana: " + semana);
+        
         for (EntradaIF entrada : ListaEntradas)
         {
             LocalDate fecha = entrada.getDate();
-            
-            if (fecha.getMonthValue() == month) //Loop para el mes
+            if (fecha.getYear() == anno)
             {
-                if (fecha.get(woy) == semana)
+                if (fecha.getMonthValue() == month) //Loop para el mes
                 {
-                     if (fecha.getDayOfMonth() == dia)
+                    if (fecha.get(woy) == semana)
                     {
-                        contadorDia++;
-                        contadorSemana++;
-                        contadorMes++;
-                        contadorAnno++;
+                         if (fecha.getDayOfMonth() == dia)
+                        {
+                            contadorDia++;
+                            contadorSemana++;
+                            contadorMes++;
+                            contadorAnno++;
+                        }
+                        else
+                        {
+                            System.out.println("   " + dia + "/" + 
+                                               month + "/" +
+                                               anno +
+                                               " - Total Visitantes: " + contadorDia);
+                            contadorDia = 1;
+                            dia = fecha.getDayOfMonth();
+                            
+                            contadorSemana++;
+                            contadorMes++;  
+                        }
                     }
                     else
                     {
                         System.out.println("   " + dia + "/" + 
                                            month + "/" +
-                                           fecha.getYear() +
+                                           anno +
                                            " - Total Visitantes: " + contadorDia);
-                        contadorDia = 1;
-                        contadorSemana++;
-                        dia = fecha.getDayOfMonth();
+                    contadorDia = 1;
+                    dia = fecha.getDayOfMonth();
+                    
+                    System.out.println("    Total Semana: " + contadorSemana);
+                    promedioSemanal = promedioSemanal(contadorSemana);
+                    System.out.println("\t\t\t\t    Promedio Semanal: " + contadorSemana);
+                    contadorSemana = 1;
+                    semana = fecha.get(woy);
+                    System.out.println("  Semana: " + semana);
+                    
+                    contadorMes++;
                     }
                 }
                 else
                 {
                     System.out.println("   " + dia + "/" + 
-                                       month + "/" +
-                                       fecha.getYear() +
-                                       " - Total Visitantes: " + contadorDia);
-                contadorDia = 1;
-                dia = fecha.getDayOfMonth();
-                System.out.println("    Total Semana: " + contadorSemana);
-                contadorSemana = 1;
-                semana = fecha.get(woy);
-                System.out.println("  Semana: " + semana);
+                                           month + "/" +
+                                           anno +
+                                           " - Total Visitantes: " + contadorDia);
+                    contadorDia = 1;
+                    dia = fecha.getDayOfMonth();
+                    month = fecha.getMonthValue();
+                    if (fecha.get(woy) != semana)//Casos en los que fin de semana y fin de mes coinciden
+                    {
+                        System.out.println("    Total Semana: " + contadorSemana);
+                        promedioSemanal = promedioSemanal(contadorSemana);
+                        System.out.println("\t\t\t\t    Promedio Semanal: " + contadorSemana);
+                        contadorSemana = 1;
+                        semana = fecha.get(woy);
+                        
+                        System.out.println("  Total Mes: " + contadorMes);
+                        promedioMes = promedioMensual(contadorMes, daysInMonth);
+                        System.out.println("\t\t\t\t    Promedio Mensual: " + promedioMes);
+                        contadorMes = 1;
+                        
+                        System.out.println("Mes: " + month);
+                        System.out.println("  Semana: " + semana);
+                    }
+                    else
+                    {
+                        contadorSemana++;
+                        
+                        System.out.println("  Total Mes: " + contadorMes);
+                        promedioMes = promedioMensual(contadorMes, daysInMonth);
+                        System.out.println("\t\t\t\t    Promedio Mensual: " + promedioMes);
+                        contadorMes = 1;
+                        System.out.println("Mes: " + month);
+                    }
+                    daysInMonth = fecha.lengthOfMonth();
+                    
                 }
             }
             else
             {
-                System.out.println("   " + dia + "/" + 
-                                       month + "/" +
-                                       fecha.getYear() +
-                                       " - Total Visitantes: " + contadorDia);
-                contadorDia = 1;
-                dia = fecha.getDayOfMonth();
-                month = fecha.getMonthValue();
-                System.out.println("  Total Mes: " + contadorMes);
-                contadorMes = 1;
-                System.out.println("Mes: " + month);
+               System.out.println("   " + dia + "/" + 
+                                           month + "/" +
+                                           anno +
+                                           " - Total Visitantes: " + contadorDia);
+               contadorDia = 1;
+               
+               System.out.println("    Total Semana: " + contadorSemana);
+               promedioSemanal = promedioSemanal(contadorSemana);
+               System.out.println("\t\t\t\t    Promedio Semanal: " + contadorSemana);
+               contadorSemana = 1;
+               semana = fecha.get(woy);
+               
+               System.out.println("  Total Mes: " + contadorMes);
+               promedioMes = promedioMensual(contadorMes, daysInMonth);
+               System.out.println("\t\t\t\t    Promedio Mensual: " + promedioMes);
+               contadorMes = 1;
+               
+               System.out.println(" Total Año: " + contadorAnno);
+               promedioAnno = promedioAnual(contadorAnno);
+               System.out.println("\t\t\t\t    Promedio Anual: " + promedioAnno);
+               contadorAnno = 1;
+               
+               dia = fecha.getDayOfMonth();
+               month = fecha.getMonthValue();
+               anno = fecha.getYear();
+               
+               System.out.println("Año: " + anno);
+               System.out.println("Mes: " + month);
+               System.out.println("  Semana: " + semana);
+               
             }
-           
+                
+                if (fecha == ultimaFecha)
+                {
+                    dia = fecha.getDayOfMonth();
+                    month = fecha.getMonthValue();
+                    daysInMonth = fecha.lengthOfMonth();
+                    
+                    System.out.println("   " + dia + "/" + 
+                                           month + "/" +
+                                           fecha.getYear() +
+                                           " - Total Visitantes: " + contadorDia);
+                    
+                    System.out.println("    Total Semana: " + contadorSemana);
+                    promedioSemanal = promedioSemanal(contadorSemana);
+                    System.out.println("\t\t\t\t    Promedio Semanal: " + contadorSemana);
+                    
+                    System.out.println("  Total Mes: " + contadorMes);
+                    promedioMes = promedioMensual(contadorMes, daysInMonth);
+                    System.out.println("\t\t\t\t    Promedio Mensual: " + promedioMes);
+                    
+                    System.out.println(" Total Año: " + contadorAnno);
+                    promedioAnno = promedioAnual(contadorAnno);
+                    System.out.println("\t\t\t\t    Promedio Anual: " + promedioAnno);
+                }
+            
         }
+        
+    }
+    
+    private float promedioSemanal(int n)
+    {
+        float promedio = (float) (n*1.0f/7);
+        return promedio;
+    }
+    
+    private float promedioMensual(int n, int m)
+    {
+        float promedio = (float) ((n*1.0f)/m);
+        return promedio;
+    }
+    
+    private float promedioAnual(int n)
+    {
+        float promedio = (float) ((n*1.0f)/365);
+        return promedio;
     }
     
 }

@@ -134,11 +134,11 @@ public class AtraccionC implements AtraccionIF
         if (!(((entrada instanceof Niño) && !getAccesoNiños()) || (!(entrada instanceof Niño) && !getAccesoAdultos()))) 
         {
             usuarios.add(entrada);
-            System.out.println("Acceso permitido a la atraccion");
+            //System.out.println("Acceso permitido a la atraccion");
         }
         else
         {
-            System.out.println("Acceso denegado a la atraccion");
+            //System.out.println("Acceso denegado a la atraccion");
         }
     }
 
