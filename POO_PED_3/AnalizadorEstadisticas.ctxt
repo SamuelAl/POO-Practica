@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=AnalizadorEstadisticas
+comment1.params=listaAtracc\ listaEntradas\ listaTrab
+comment1.target=AnalizadorEstadisticas(java.util.List,\ java.util.List,\ java.util.List)
+comment2.params=anno
+comment2.target=void\ analizarVisitantes(int)
+comment3.params=
+comment3.target=void\ analizarFechas()
+numComments=4

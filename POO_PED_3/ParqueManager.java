@@ -122,4 +122,10 @@ public class ParqueManager
             
         }
     }
+    
+    public AnalizadorEstadisticas analisisEstadistico()
+    {
+        AnalizadorEstadisticas analizador = new AnalizadorEstadisticas(AtraccionesParque, EntradasParque, TrabajadoresParque);
+        return analizador;
+    }
 }

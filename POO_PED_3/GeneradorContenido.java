@@ -54,11 +54,11 @@ public class GeneradorContenido
             manager.addTrabajador(TiposTrabajadores.REL_PUBLICAS);
         }
         
-        System.out.println("Numero trabajadores Atencion: " + manager.getNumTrabajadores(TiposTrabajadores.ATENCION_CL));
-        System.out.println("Numero trabajadores Relaciones: " + manager.getNumTrabajadores(TiposTrabajadores.REL_PUBLICAS));
+        //System.out.println("Numero trabajadores Atencion: " + manager.getNumTrabajadores(TiposTrabajadores.ATENCION_CL));
+        //System.out.println("Numero trabajadores Relaciones: " + manager.getNumTrabajadores(TiposTrabajadores.REL_PUBLICAS));
         
         GeneradorVisitantes.generarVisitantes(manager);
-        System.out.println("Numero visitantes: " + manager.getNumVisitantes());
+        //System.out.println("Numero visitantes: " + manager.getNumVisitantes());
         
         // Usar atracciones
         manager.randomUsarAtracciones();
