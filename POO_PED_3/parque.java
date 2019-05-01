@@ -15,7 +15,7 @@ public class parque
         GeneradorContenido.generadorContenido(manager);
 
         AnalizadorEstadisticas analizador = manager.analisisEstadistico();
-        analizador.resumenPrecios();
+        analizador.resumenVisitasAtracciones();
 
     }
 }

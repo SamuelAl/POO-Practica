@@ -19,7 +19,7 @@ public class AtraccionB implements AtraccionIF
     private int numRespAtracc;
     private int numAyuAtracc;
     private int contador;
-    
+
     private List trabajadores;
     private List usuarios;
 
@@ -41,96 +41,101 @@ public class AtraccionB implements AtraccionIF
         numRespAtracc = 1;
         numAyuAtracc = 5;
     }
-    
+
+    public String getTipo()
+    {
+      return this.tipo;
+    }
+
     public boolean getVIP()
     {
         return accesoVIP;
     }
-    
+
     public void setVIP(boolean VIP)
     {
         this.accesoVIP = VIP;
     }
-    
+
     public float getMinAlturaCM()
     {
         return this.minAlturaCM;
     }
-    
+
     public void setMinAlturaCM(float min)
     {
         this.minAlturaCM = min;
     }
-    
+
      public float getMaxAlturaCM()
     {
         return this.maxAlturaCM;
     }
-    
+
     public void setMaxAlturaCM(float max)
     {
         this.maxAlturaCM = max;
     }
-    
+
     public int getEdad()
     {
         return this.minEdad;
     }
-    
+
     public void setMinEdad(int min)
     {
         this.minEdad = min;
     }
-    
+
     public boolean getAccesoNiños()
     {
         return this.accesoNiños;
     }
-    
+
     public void setAccesoNiños(boolean acceso)
     {
         this.accesoNiños= acceso;
     }
-    
+
     public void setAccesoAdultos(boolean acceso)
     {
         this.accesoAdultos= acceso;
     }
-    
+
     public boolean getAccesoAdultos()
     {
         return this.accesoAdultos;
     }
-    
+
     public void setNumRespAtracc(int num)
     {
         this.numRespAtracc = num;
     }
-    
+
     public int getNumRespAtracc()
     {
         return numRespAtracc;
     }
-    
+
     public void setNumAyuAtracc(int num)
     {
         numAyuAtracc = num;
     }
-    
+
     public int getNumAyuAtracc()
     {
         return numAyuAtracc;
     }
-    
+
     public void addTrabajador(Trabajador trabajador)
     {
         trabajadores.add(trabajador);
     }
-    
+
     public void usar(EntradaIF entrada)
     {
         contador++;
-        if (!(((entrada instanceof Niño) && !getAccesoNiños()) || (!(entrada instanceof Niño) && !getAccesoAdultos()))) 
+        if (!(((entrada instanceof Niño) && !getAccesoNiños()) || (!(entrada instanceof Niño) && !getAccesoAdultos())))
         {
             usuarios.add(entrada);
             //System.out.println("Acceso permitido a la atraccion");
@@ -141,5 +146,9 @@ public class AtraccionB implements AtraccionIF
         }
     }
 
-    
+    public List getUsuarios()
+    {
+      return this.usuarios;
+    }
+
 }
