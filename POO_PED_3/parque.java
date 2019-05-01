@@ -7,14 +7,15 @@
  */
 public class parque
 {
-    
+
     public static void main (String[] args)
     {
         ParqueManager manager = new ParqueManager();
-        
+
         GeneradorContenido.generadorContenido(manager);
-        
+
         AnalizadorEstadisticas analizador = manager.analisisEstadistico();
-        analizador.analizarFechas();
+        analizador.resumenPrecios();
+
     }
 }
