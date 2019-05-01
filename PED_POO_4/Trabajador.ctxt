@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Trabajador
+comment1.params=
+comment1.target=Trabajador()
+comment2.params=
+comment2.target=TiposTrabajadores\ getTipo()
+comment3.params=
+comment3.target=java.util.List\ getAtracciones()
+comment4.params=atracciones
+comment4.target=void\ setAtracciones(java.util.LinkedList)
+comment5.params=atraccion
+comment5.target=void\ addAtraccion(AtraccionIF)
+comment6.params=atraccion
+comment6.target=void\ removeAtraccion(AtraccionIF)
+comment7.params=
+comment7.target=void\ clearAtracciones()
+comment8.params=
+comment8.target=int\ numeroDeAtracciones()
+comment9.params=
+comment9.target=float\ getSueldo()
+numComments=10

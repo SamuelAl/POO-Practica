@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=GeneradorVisitantes
+comment1.params=manager
+comment1.target=void\ generarVisitantes(ParqueManager)
+numComments=2

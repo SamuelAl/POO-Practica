@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=BuscadorDescuentos
+comment1.params=
+comment1.target=BuscadorDescuentos()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ BuscadorDescuentos\r\n
+comment2.params=key
+comment2.target=float\ getDescuento(java.lang.String)
+numComments=3
