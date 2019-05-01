@@ -32,52 +32,58 @@ public class ParqueManager
         generadorEntradas = new MaquinaEntradas();
         generadorTrabajadores = new CreadorTrabajadores();
         generadorAtracciones = new CreadorAtracciones();
-        
+
     }
 
     public void addEntrada(LocalDate fecha, int edad,
-                           boolean isVIP, boolean isFamilia, 
+                           boolean isVIP, boolean isFamilia,
                            String descuento)
     {
-        EntradaIF entrada = generadorEntradas.nuevaEntrada(fecha, edad, 
+        EntradaIF entrada = generadorEntradas.nuevaEntrada(fecha, edad,
                                                     isVIP, isFamilia, descuento);
         EntradasParque.add(entrada);
     }
-    
+
     public void addEntradaNiño(LocalDate fecha, int edad,
-                           boolean isVIP, boolean isFamilia, 
+                           boolean isVIP, boolean isFamilia,
                            String descuento)
     {
         EntradaIF entrada = generadorEntradas.nuevaEntradaNiño(fecha, edad,
                                                     isVIP, isFamilia, descuento);
         EntradasParque.add(entrada);
     }
-    
+
     public void addTrabajador(TiposTrabajadores tipo)
     {
         Trabajador trabajador = generadorTrabajadores.nuevoTrabajador(tipo);
         TrabajadoresParque.add(trabajador);
     }
-    
+
     public void addAtraccion(String tipo)
     {
         AtraccionIF atraccion = generadorAtracciones.nuevaAtraccion(tipo);
-        AtraccionesParque.add(atraccion);
+        Trabajador nuevoTrabajador;
         for (int i = 0; i < atraccion.getNumRespAtracc(); i++)
         {
-            TrabajadoresParque.add(generadorTrabajadores.nuevoTrabajador(TiposTrabajadores.RESP_ATRACC));
+            nuevoTrabajador = generadorTrabajadores.nuevoTrabajador(TiposTrabajadores.RESP_ATRACC);
+            TrabajadoresParque.add(nuevoTrabajador);
+            atraccion.addTrabajador(nuevoTrabajador);
         }
-        
+
         for (int i = 0; i < atraccion.getNumAyuAtracc(); i++)
         {
-            TrabajadoresParque.add(generadorTrabajadores.nuevoTrabajador(TiposTrabajadores.AYU_ATRACC));
+            nuevoTrabajador = generadorTrabajadores.nuevoTrabajador(TiposTrabajadores.RESP_ATRACC);
+            TrabajadoresParque.add(nuevoTrabajador);
+            atraccion.addTrabajador(nuevoTrabajador);
         }
+
+        AtraccionesParque.add(atraccion);
     }
-    
+
     public int getNumTrabajadores(TiposTrabajadores tipo)
     {
         int n = 0;
-        
+
         for (Trabajador trabajador : TrabajadoresParque)
         {
             if (trabajador.getTipo() == tipo)
@@ -85,25 +91,25 @@ public class ParqueManager
                 n++;
             }
         }
-        
+
         return n;
     }
-    
+
     public int getNumTrabajadores()
-    {    
+    {
         return TrabajadoresParque.size();
     }
-    
+
     public int getNumVisitantes()
     {
         return EntradasParque.size();
     }
-    
+
     public void usarAtraccion(int index, EntradaIF entrada)
     {
         AtraccionesParque.get(index).usar(entrada);
     }
-    
+
     //Funcion para generar uso aleatorio de atracciones
     public void randomUsarAtracciones()
     {
@@ -119,10 +125,10 @@ public class ParqueManager
                 }
                 i++;
             }
-            
+
         }
     }
-    
+
     public AnalizadorEstadisticas analisisEstadistico()
     {
         AnalizadorEstadisticas analizador = new AnalizadorEstadisticas(AtraccionesParque, EntradasParque, TrabajadoresParque);

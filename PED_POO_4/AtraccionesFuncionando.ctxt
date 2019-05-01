@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=AtraccionesFuncionando
+comment1.params=
+comment1.target=AtraccionesFuncionando()
+comment2.params=atraccion
+comment2.target=void\ addAtraccion(AtraccionIF)
+comment3.params=
+comment3.target=java.util.List\ getAtracciones()
+numComments=4
