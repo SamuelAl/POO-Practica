@@ -27,12 +27,7 @@ public class AnalizadorEstadisticas
         ListaTrabajadores = listaTrab;
     }
 
-    public void analizarVisitantes(int anno)
-    {
-
-    }
-
-    public void analizarFechas()
+    public void resumenVisitantes()
     {
         analisisPorFechas(ListaEntradas);
     }
