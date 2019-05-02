@@ -133,6 +133,11 @@ public class AtraccionA implements AtraccionIF
         trabajadores.add(trabajador);
     }
 
+    public List getTrabajadores()
+    {
+      return trabajadores;
+    }
+
     public void usar(EntradaIF entrada)
     {
          contador++;

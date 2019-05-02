@@ -2,8 +2,8 @@
 comment0.target=AtraccionesFuncionando
 comment1.params=
 comment1.target=AtraccionesFuncionando()
-comment2.params=atraccion
-comment2.target=void\ addAtraccion(AtraccionIF)
-comment3.params=
-comment3.target=java.util.List\ getAtracciones()
+comment2.params=periodo\ atracciones
+comment2.target=void\ addAtraccion(PeriodoTemporada,\ java.util.List)
+comment3.params=fecha
+comment3.target=java.util.List\ getAtracciones(java.time.LocalDate)
 numComments=4

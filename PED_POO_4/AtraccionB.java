@@ -151,4 +151,9 @@ public class AtraccionB implements AtraccionIF
       return this.usuarios;
     }
 
+    public List getTrabajadores()
+    {
+      return trabajadores;
+    }
+
 }

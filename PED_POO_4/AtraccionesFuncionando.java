@@ -8,25 +8,34 @@
 
 import java.util.List;
 import java.util.LinkedList;
+import java.util.HashMap;
+import java.time.*;
 
 public class AtraccionesFuncionando
 {
 
-    private List<AtraccionIF> atracciones;
+    private HashMap<PeriodoTemporada, List<AtraccionIF> > atraccionesActivas;
 
     public AtraccionesFuncionando()
     {
-        atracciones = new LinkedList<AtraccionIF>();
+        atraccionesActivas = new HashMap<PeriodoTemporada, List<AtraccionIF> >();
     }
 
 
-  public void addAtraccion(AtraccionIF atraccion)
+  public void addAtraccion(PeriodoTemporada periodo, List<AtraccionIF> atracciones)
   {
-    atracciones.add(atraccion);
+    atraccionesActivas.put(periodo, atracciones);
   }
 
-  public List getAtracciones()
+  public List<AtraccionIF> getAtracciones(LocalDate fecha)
   {
-    return atracciones;
+    for (PeriodoTemporada periodo : atraccionesActivas.keySet())
+    {
+      if (periodo.enPeriodo(fecha)) {return atraccionesActivas.get(periodo);}
+    }
+    
+    return new LinkedList<AtraccionIF>();
   }
+
+
 }
