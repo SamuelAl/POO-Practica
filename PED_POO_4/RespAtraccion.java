@@ -17,6 +17,7 @@ public class RespAtraccion extends Trabajador
     {
         super();
         tipo = TiposTrabajadores.RESP_ATRACC;
+        sueldo = 36.42f;
     }
     
 

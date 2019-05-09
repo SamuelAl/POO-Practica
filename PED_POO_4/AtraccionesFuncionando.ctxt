@@ -6,4 +6,6 @@ comment2.params=periodo\ atracciones
 comment2.target=void\ addAtraccion(PeriodoTemporada,\ java.util.List)
 comment3.params=fecha
 comment3.target=java.util.List\ getAtracciones(java.time.LocalDate)
-numComments=4
+comment4.params=periodo
+comment4.target=PeriodoTemporada\ buscarPeriodo(PeriodoTemporada)
+numComments=5

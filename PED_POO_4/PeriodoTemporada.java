@@ -23,9 +23,31 @@ public class PeriodoTemporada
         fechaFinal = fFinal;
     }
 
-    
+
     public boolean enPeriodo(LocalDate fecha)
     {
         return !(fecha.isBefore(fechaInicio) || fecha.isAfter(fechaFinal));
+    }
+
+    public LocalDate getFechaInic()
+    {
+      return fechaInicio;
+    }
+
+    public LocalDate getFechaFinal()
+    {
+      return fechaFinal;
+    }
+
+    public boolean equals(PeriodoTemporada periodo)
+    {
+      if (this.fechaInicio == periodo.getFechaInic() && this.fechaFinal == periodo.getFechaFinal())
+      {
+        return true;
+      }
+      else
+      {
+          return false;
+      }
     }
 }

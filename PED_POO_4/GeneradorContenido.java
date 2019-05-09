@@ -16,6 +16,7 @@ public class GeneradorContenido
             manager.addAtraccion("A");
         }
         
+        
         for (int i = 0; i < 6; i++)
         {
             manager.addAtraccion("B");
@@ -35,6 +36,9 @@ public class GeneradorContenido
         {
             manager.addAtraccion("E");
         }
+        
+        // Atracciones en uso
+        
         
         System.out.println("Numero trabajadores: " + manager.getNumTrabajadores());
         
@@ -57,10 +61,12 @@ public class GeneradorContenido
         //System.out.println("Numero trabajadores Atencion: " + manager.getNumTrabajadores(TiposTrabajadores.ATENCION_CL));
         //System.out.println("Numero trabajadores Relaciones: " + manager.getNumTrabajadores(TiposTrabajadores.REL_PUBLICAS));
         
-        GeneradorVisitantes.generarVisitantes(manager);
+        manager.setContenidoAtraccionesFuncionando();
+        //GeneradorVisitantes.generarVisitantes(manager);
         //System.out.println("Numero visitantes: " + manager.getNumVisitantes());
         
         // Usar atracciones
         manager.randomUsarAtracciones();
+        
     }
 }

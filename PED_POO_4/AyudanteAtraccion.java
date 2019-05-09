@@ -16,6 +16,7 @@ public class AyudanteAtraccion extends Trabajador
     {
         super();
         tipo = TiposTrabajadores.AYU_ATRACC;
+        sueldo = 31.67f; // sueldo diario
     }
     
 

@@ -24,7 +24,28 @@ public class AtraccionesFuncionando
 
   public void addAtraccion(PeriodoTemporada periodo, List<AtraccionIF> atracciones)
   {
-    atraccionesActivas.put(periodo, atracciones);
+    PeriodoTemporada key = buscarPeriodo(periodo);
+    if (key != null)
+    {
+      for (AtraccionIF atraccion : atracciones)
+      {
+        List<AtraccionIF> nuevaLista = new LinkedList<AtraccionIF>(atraccionesActivas.get(periodo));
+        nuevaLista.add(atraccion);
+        atraccionesActivas.put(periodo, nuevaLista);
+      }
+    }
+    else
+    {
+      if (!buscarCoincidencias(periodo))
+      {
+        atraccionesActivas.put(periodo, atracciones);
+      }
+      else
+      {
+          System.out.println("Error: Coincidencia de fechas");
+      }
+
+    }
   }
 
   public List<AtraccionIF> getAtracciones(LocalDate fecha)
@@ -33,8 +54,40 @@ public class AtraccionesFuncionando
     {
       if (periodo.enPeriodo(fecha)) {return atraccionesActivas.get(periodo);}
     }
-    
     return new LinkedList<AtraccionIF>();
+  }
+
+  private PeriodoTemporada buscarPeriodo(PeriodoTemporada periodo)
+  {
+    if (!atraccionesActivas.isEmpty())
+    {
+      for (PeriodoTemporada key : atraccionesActivas.keySet())
+      {
+        if (key.equals(periodo))
+        {
+          return key;
+        }
+      }
+      return null;
+    }
+    else
+    {
+      return null;
+    }
+  }
+
+  private boolean buscarCoincidencias(PeriodoTemporada periodo)
+  {
+    for (PeriodoTemporada key : atraccionesActivas.keySet())
+    {
+      if (key.enPeriodo(periodo.getFechaInic())
+          || key.enPeriodo(periodo.getFechaFinal())
+          || ((key.getFechaInic().compareTo(periodo.getFechaInic()) < 0) && (key.getFechaFinal().compareTo(periodo.getFechaFinal()) > 0)))
+          {
+            return true;
+          }
+    }
+    return false;
   }
 
 

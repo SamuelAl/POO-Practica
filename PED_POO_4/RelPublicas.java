@@ -17,6 +17,7 @@ public class RelPublicas extends Trabajador
     {
         super();
         tipo = TiposTrabajadores.REL_PUBLICAS ;
+        sueldo = 38f;
     }
     
 

@@ -21,6 +21,7 @@ public class ParqueManager
     private MaquinaEntradas generadorEntradas;
     private CreadorTrabajadores generadorTrabajadores;
     private CreadorAtracciones generadorAtracciones;
+    private AtraccionesFuncionando atraccionesFuncionando;
     /**
      * Constructor for objects of class Parque
      */
@@ -32,6 +33,7 @@ public class ParqueManager
         generadorEntradas = new MaquinaEntradas();
         generadorTrabajadores = new CreadorTrabajadores();
         generadorAtracciones = new CreadorAtracciones();
+        atraccionesFuncionando = new AtraccionesFuncionando();
 
     }
 
@@ -72,7 +74,7 @@ public class ParqueManager
 
         for (int i = 0; i < atraccion.getNumAyuAtracc(); i++)
         {
-            nuevoTrabajador = generadorTrabajadores.nuevoTrabajador(TiposTrabajadores.RESP_ATRACC);
+            nuevoTrabajador = generadorTrabajadores.nuevoTrabajador(TiposTrabajadores.AYU_ATRACC);
             TrabajadoresParque.add(nuevoTrabajador);
             atraccion.addTrabajador(nuevoTrabajador);
         }
@@ -129,9 +131,25 @@ public class ParqueManager
         }
     }
 
+    public void setContenidoAtraccionesFuncionando()
+    {
+      List<AtraccionIF> atraccFuc1 = new LinkedList<AtraccionIF>();
+      for (int i = 0; i < AtraccionesParque.size(); i += 2)
+      {
+        atraccFuc1.add(AtraccionesParque.get(i));
+      }
+      atraccionesFuncionando.addAtraccion(new PeriodoTemporada(LocalDate.of(2019, Month.JANUARY, 1), LocalDate.of(2019, Month.MAY, 31)), atraccFuc1);
+      List<AtraccionIF> atraccFuc2 = new LinkedList<AtraccionIF>();
+      for (int i = 1; i < AtraccionesParque.size(); i += 2)
+      {
+        atraccFuc2.add(AtraccionesParque.get(i));
+      }
+      atraccionesFuncionando.addAtraccion(new PeriodoTemporada(LocalDate.of(2019, Month.JUNE, 1), LocalDate.of(2019, Month.DECEMBER, 31)), atraccFuc2);
+    }
+
     public AnalizadorEstadisticas analisisEstadistico()
     {
-        AnalizadorEstadisticas analizador = new AnalizadorEstadisticas(AtraccionesParque, EntradasParque, TrabajadoresParque);
+        AnalizadorEstadisticas analizador = new AnalizadorEstadisticas(EntradasParque, AtraccionesParque, TrabajadoresParque, atraccionesFuncionando);
         return analizador;
     }
 }

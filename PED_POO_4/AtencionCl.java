@@ -20,6 +20,7 @@ public class AtencionCl extends Trabajador
     {
         super();
         tipo = TiposTrabajadores.ATENCION_CL;
+        sueldo = 34.83f;
     }
     
 

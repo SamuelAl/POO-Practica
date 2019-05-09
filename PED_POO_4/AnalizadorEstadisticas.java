@@ -27,6 +27,52 @@ public class AnalizadorEstadisticas
         this.atraccionesActivas = atraccionesAct;
     }
 
+    public void resumenAtracciones()
+    {
+        int[] numeroAtracciones = new int[5];
+        for (AtraccionIF atraccion : ListaAtracciones)
+        {
+            switch (atraccion.getTipo())
+            {
+              case "A":
+                numeroAtracciones[0]++;
+                break;
+              case "B":
+                numeroAtracciones[1]++;
+                break;
+              case "C":
+                numeroAtracciones[2]++;
+                break;
+              case "D":
+                numeroAtracciones[3]++;
+                break;
+              case "E":
+                numeroAtracciones[4]++;
+                break;
+            }
+        }
+        System.out.println("Atracciones Tipo A: " + numeroAtracciones[0]);
+        System.out.println("Atracciones Tipo B: " + numeroAtracciones[1]);
+        System.out.println("Atracciones Tipo C: " + numeroAtracciones[2]);
+        System.out.println("Atracciones Tipo D: " + numeroAtracciones[3]);
+        System.out.println("Atracciones Tipo E: " + numeroAtracciones[4]);
+    }
+
+    public int resumenTrabajadoresTipo(TiposTrabajadores tipo)
+    {
+        int n = 0;
+
+        for (Trabajador trabajador : ListaTrabajadores)
+        {
+            if (trabajador.getTipo() == tipo)
+            {
+                n++;
+            }
+        }
+
+        return n;
+    }
+
     public void resumenVisitantes()
     {
         analisisPorFechas(ListaEntradas);
@@ -456,35 +502,34 @@ public class AnalizadorEstadisticas
       List<Trabajador> trabajadores;
       List<AtraccionIF> atracciones;
 
+      TemporalField woy = WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear();
+      int semana = fechaBase.get(woy);
+      int month = fechaBase.getMonthValue();
+      int daysInMonth = fechaBase.lengthOfMonth();
+      int anno = year;
+
+      int contadorSemana = 0;
+      int contadorMes = 0;
+      int contadorAnno = 0;
+
+      float sumadorDia = 0;
+      float sumadorSemana = 0;
+      float sumadorMes = 0;
+      float sumadorAnno = 0;
+
+      float promedioImpSemanal = 0;
+      float promedioImpMes = 0;
+      float promedioImpAnno = 0;
+
+      System.out.println("Año: " + anno);
+      System.out.println("Mes: " + month);
+      System.out.println("  Semana: " + semana);
+
       for (int i = 0; i < fechaBase.lengthOfYear(); i++)
       {
           atracciones = atraccionesActivas.getAtracciones(fechaBase);
           if (atracciones.size() > 0)
           {
-            TemporalField woy = WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear();
-            int semana = fechaBase.get(woy);
-            int month = fechaBase.getMonthValue();
-            int daysInMonth = fechaBase.lengthOfMonth();
-            int anno = year;
-
-            int contadorDia = 0;
-            int contadorSemana = 0;
-            int contadorMes = 0;
-            int contadorAnno = 0;
-
-            float sumadorDia = 0;
-            float sumadorSemana = 0;
-            float sumadorMes = 0;
-            float sumadorAnno = 0;
-
-            float promedioImpSemanal = 0;
-            float promedioImpMes = 0;
-            float promedioImpAnno = 0;
-
-            System.out.println("Año: " + anno);
-            System.out.println("Mes: " + month);
-            System.out.println("  Semana: " + semana);
-
                 LocalDate fecha = fechaBase;
                 if (fecha.getYear() == anno)
                 {
@@ -492,21 +537,31 @@ public class AnalizadorEstadisticas
                     {
                         if (fecha.get(woy) == semana)
                         {
-                             actualizarNivel(atracciones, contadorSemana, sumadorSemana, contadorMes, sumadorMes, contadorAnno, sumadorAnno);
+                             contadorSemana = resolvContador(atracciones, contadorSemana);
+                             sumadorSemana = resolvSumador(atracciones, sumadorSemana);
+
+                             contadorMes = resolvContador(atracciones, contadorMes);
+                             sumadorMes = resolvSumador(atracciones, sumadorMes);
+
+                             contadorAnno = resolvContador(atracciones, contadorAnno);
+                             sumadorAnno = resolvSumador(atracciones, sumadorAnno);
                         }
                         else
                         {
-
+                        System.out.println("  Semana: " + semana);
                         System.out.println("    Total Semana: $" + sumadorSemana);
                         System.out.println("\t\t\t\t    Promedio Semanal: $" + promedioPrecio(sumadorSemana, contadorSemana));
 
-                        contadorSemana = 0;
-                        sumadorSemana = 0;
+                        contadorSemana = resolvContador(atracciones, 0);
+                        sumadorSemana = resolvSumador(atracciones, 0);
 
-                        actualizarNivel(atracciones, contadorSemana, sumadorSemana, contadorMes, sumadorMes, contadorAnno, sumadorAnno);
+                        contadorMes = resolvContador(atracciones, contadorMes);
+                        sumadorMes = resolvSumador(atracciones, sumadorMes);
+
+                        contadorAnno = resolvContador(atracciones, contadorAnno);
+                        sumadorAnno = resolvSumador(atracciones, sumadorAnno);
 
                         semana = fecha.get(woy);
-                        System.out.println("  Semana: " + semana);
                         }
                     }
                     else
@@ -514,34 +569,42 @@ public class AnalizadorEstadisticas
                         month = fecha.getMonthValue();
                         if (fecha.get(woy) != semana)//Casos en los que fin de semana y fin de mes coinciden
                         {
+                            System.out.println("  Semana: " + semana);
                             System.out.println("    Total Semana: $" + sumadorSemana);
                             System.out.println("\t\t\t\t    Promedio Semanal: $" + promedioPrecio(sumadorSemana, contadorSemana));
 
                             System.out.println("  Total Mes: $" + sumadorMes);
                             System.out.println("\t\t\t\t    Promedio Mensual: " + promedioPrecio(sumadorMes, contadorMes));
 
-                            contadorSemana = 0;
-                            sumadorSemana = 0;
-                            contadorMes = 0;
-                            sumadorMes = 0;
 
-                            actualizarNivel(atracciones, contadorSemana, sumadorSemana, contadorMes, sumadorMes, contadorAnno, sumadorAnno);
+                            contadorSemana = resolvContador(atracciones, 0);
+                            sumadorSemana = resolvSumador(atracciones, 0);
+
+                            contadorMes = resolvContador(atracciones, 0);
+                            sumadorMes = resolvSumador(atracciones, 0);
+
+                            contadorAnno = resolvContador(atracciones, contadorAnno);
+                            sumadorAnno = resolvSumador(atracciones, sumadorAnno);
 
                             semana = fecha.get(woy);
 
                             System.out.println("Mes: " + month);
-                            System.out.println("  Semana: " + semana);
                         }
                         else
                         {
 
-                            System.out.println("  Total Mes: " + sumadorMes);
-                            System.out.println("\t\t\t\t    Promedio Mensual:$" + promedioPrecio(sumadorMes, contadorMes));
+                            System.out.println("  Total Mes: $" + sumadorMes);
+                            System.out.println("\t\t\t\t    Promedio Mensual: $" + promedioPrecio(sumadorMes, contadorMes));
 
-                            contadorMes = 0;
-                            sumadorMes = 0;
 
-                            actualizarNivel(atracciones, contadorSemana, sumadorSemana, contadorMes, sumadorMes, contadorAnno, sumadorAnno);
+                            contadorSemana = resolvContador(atracciones, contadorSemana);
+                            sumadorSemana = resolvSumador(atracciones, sumadorSemana);
+
+                            contadorMes = resolvContador(atracciones, 0);
+                            sumadorMes = resolvSumador(atracciones, 0);
+
+                            contadorAnno = resolvContador(atracciones, contadorAnno);
+                            sumadorAnno = resolvSumador(atracciones, sumadorAnno);
 
                             System.out.println("Mes: " + month);
                         }
@@ -551,24 +614,25 @@ public class AnalizadorEstadisticas
                 else
                 {
 
-                   System.out.println("    Total Semana: " + sumadorSemana);
+                   System.out.println("    Total Semana: $" + sumadorSemana);
                    System.out.println("\t\t\t\t    Promedio Semanal: $" + promedioPrecio(sumadorSemana, contadorSemana));
 
 
-                   System.out.println("  Total Mes: " + sumadorMes);
+                   System.out.println("  Total Mes: $" + sumadorMes);
                    System.out.println("\t\t\t\t    Promedio Mensual: $" + promedioPrecio(sumadorMes, contadorMes));
 
-                   System.out.println(" Total Año: " + sumadorAnno);
+                   System.out.println(" Total Año: $" + sumadorAnno);
                    System.out.println("\t\t\t\t    Promedio Anual: $" + promedioPrecio(sumadorAnno, contadorAnno));
 
-                   contadorSemana = 0;
-                   sumadorSemana = 0;
-                   contadorMes = 0;
-                   sumadorMes = 0;
-                   contadorAnno = 0;
-                   sumadorAnno = 0;
 
-                   actualizarNivel(atracciones, contadorSemana, sumadorSemana, contadorMes, sumadorMes, contadorAnno, sumadorAnno);
+                   contadorSemana = resolvContador(atracciones, 0);
+                   sumadorSemana = resolvSumador(atracciones, 0);
+
+                   contadorMes = resolvContador(atracciones, 0);
+                   sumadorMes = resolvSumador(atracciones, 0);
+
+                   contadorAnno = resolvContador(atracciones, 0);
+                   sumadorAnno = resolvSumador(atracciones, 0);
 
                    semana = fecha.get(woy);
                    month = fecha.getMonthValue();
@@ -580,19 +644,18 @@ public class AnalizadorEstadisticas
 
                 }
 
-                if (fechaBase == LocalDate.of(year, Month.JANUARY, 31))
+                if (i == fechaBase.lengthOfYear() - 1)
                 {
                     month = fecha.getMonthValue();
                     daysInMonth = fecha.lengthOfMonth();
 
-
-                    System.out.println("    Total Semana: " + sumadorSemana);
+                    System.out.println("    Total Semana: $" + sumadorSemana);
                     System.out.println("\t\t\t\t    Promedio Semanal: " + promedioPrecio(sumadorSemana, contadorSemana));
 
-                    System.out.println("  Total Mes: " + sumadorMes);
+                    System.out.println("  Total Mes: $" + sumadorMes);
                     System.out.println("\t\t\t\t    Promedio Mensual: " + promedioPrecio(sumadorMes, contadorMes));
 
-                    System.out.println(" Total Año: " + sumadorAnno);
+                    System.out.println(" Total Año: $" + sumadorAnno);
                     System.out.println("\t\t\t\t    Promedio Anual: $" + promedioPrecio(sumadorAnno, contadorAnno));
                 }
                 else
@@ -621,6 +684,13 @@ public class AnalizadorEstadisticas
           contador++;
         }
       }
+      for (Trabajador trabajador : ListaTrabajadores)
+      {
+        if (trabajador.getTipo() == TiposTrabajadores.REL_PUBLICAS || trabajador.getTipo() == TiposTrabajadores.ATENCION_CL)
+        {
+          contador++;
+        }
+      }
 
       return contador;
     }
@@ -635,6 +705,13 @@ public class AnalizadorEstadisticas
         for (Trabajador trabajador : trabajadores)
         {
           sumador += trabajador.getSueldo();
+        }
+      }
+      for (Trabajador trabajador : ListaTrabajadores)
+      {
+        if (trabajador.getTipo() == TiposTrabajadores.REL_PUBLICAS || trabajador.getTipo() == TiposTrabajadores.ATENCION_CL)
+        {
+          sumador++;
         }
       }
       return sumador;
