@@ -77,7 +77,7 @@ public class GeneradorVisitantes
                     month = Month.JANUARY;
              }
             fecha = LocalDate.of(2019, month, Integer.parseInt(tmp[4]));
-            System.out.println("Visitante: " + tipos[tipo]);
+            //System.out.println("Visitante: " + tipos[tipo]);
             
             if (tipo == 0)
             {

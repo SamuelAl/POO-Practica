@@ -33,13 +33,12 @@ public class parque
         System.out.println("Atencion al Cliente: " + analizador.resumenTrabajadoresTipo(TiposTrabajadores.ATENCION_CL));
         System.out.println("Relaciones Publicas: " + analizador.resumenTrabajadoresTipo(TiposTrabajadores.REL_PUBLICAS));
         System.out.println();
-        System.out.println("Importando Visitantes del archivo Visitantes.txt ...")
+        System.out.println("Importando Visitantes del archivo Visitantes.txt ...");
         System.out.println();
         GeneradorVisitantes.generarVisitantes(manager);
+        analizador.resumenVisitantesTipo();
 
-
-
-        analizador.resumenGastoPersonal(2019);
+        //analizador.resumenGastoPersonal(2019);
 
     }
 }

@@ -8,6 +8,7 @@
 
 import java.util.List;
 import java.util.LinkedList;
+import java.util.HashMap;
 import java.time.*;
 import java.time.temporal.*;
 import java.util.Locale;
@@ -71,6 +72,27 @@ public class AnalizadorEstadisticas
         }
 
         return n;
+    }
+
+    public void resumenVisitantesTipo()
+    {
+      HashMap<String, Integer> tiposVisitantes = new HashMap();
+      for (EntradaIF entrada : ListaEntradas)
+      {
+        String tipo = entrada.getTipo();
+        if (tiposVisitantes.containsKey(tipo))
+        {
+          tiposVisitantes.put(tipo, tiposVisitantes.get(tipo) + 1);
+        }
+        else
+        {
+          tiposVisitantes.put(tipo, 1);
+        }
+      }
+      for (String tipo : tiposVisitantes.keySet())
+      {
+        System.out.println(tipo + ": " + tiposVisitantes.get(tipo));
+      }
     }
 
     public void resumenVisitantes()
