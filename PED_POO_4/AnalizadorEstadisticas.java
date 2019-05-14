@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.time.*;
 import java.time.temporal.*;
 import java.util.Locale;
+import java.math.BigDecimal;
 
 public class AnalizadorEstadisticas
 {
@@ -545,7 +546,6 @@ public class AnalizadorEstadisticas
 
       System.out.println("Año: " + anno);
       System.out.println("Mes: " + month);
-      System.out.println("  Semana: " + semana);
 
       for (int i = 0; i < fechaBase.lengthOfYear(); i++)
       {
@@ -571,8 +571,8 @@ public class AnalizadorEstadisticas
                         else
                         {
                         System.out.println("  Semana: " + semana);
-                        System.out.println("    Total Semana: $" + sumadorSemana);
-                        System.out.println("\t\t\t\t    Promedio Semanal: $" + promedioPrecio(sumadorSemana, contadorSemana));
+                        System.out.println("    Total Semana: $" + round(sumadorSemana, 2));
+                        System.out.println("\t\t\t\t    Promedio Semanal: $" + round(promedioPrecio(sumadorSemana, contadorSemana), 2));
 
                         contadorSemana = resolvContador(atracciones, 0);
                         sumadorSemana = resolvSumador(atracciones, 0);
@@ -592,11 +592,11 @@ public class AnalizadorEstadisticas
                         if (fecha.get(woy) != semana)//Casos en los que fin de semana y fin de mes coinciden
                         {
                             System.out.println("  Semana: " + semana);
-                            System.out.println("    Total Semana: $" + sumadorSemana);
-                            System.out.println("\t\t\t\t    Promedio Semanal: $" + promedioPrecio(sumadorSemana, contadorSemana));
+                            System.out.println("    Total Semana: $" + round(sumadorSemana, 2));
+                            System.out.println("\t\t\t\t    Promedio Semanal: $" + round(promedioPrecio(sumadorSemana, contadorSemana), 2));
 
                             System.out.println("  Total Mes: $" + sumadorMes);
-                            System.out.println("\t\t\t\t    Promedio Mensual: " + promedioPrecio(sumadorMes, contadorMes));
+                            System.out.println("\t\t\t\t    Promedio Mensual: " + round(promedioPrecio(sumadorMes, contadorMes), 2));
 
 
                             contadorSemana = resolvContador(atracciones, 0);
@@ -615,8 +615,8 @@ public class AnalizadorEstadisticas
                         else
                         {
 
-                            System.out.println("  Total Mes: $" + sumadorMes);
-                            System.out.println("\t\t\t\t    Promedio Mensual: $" + promedioPrecio(sumadorMes, contadorMes));
+                            System.out.println("  Total Mes: $" + round(sumadorMes, 2));
+                            System.out.println("\t\t\t\t    Promedio Mensual: $" + round(promedioPrecio(sumadorMes, contadorMes), 2));
 
 
                             contadorSemana = resolvContador(atracciones, contadorSemana);
@@ -636,15 +636,15 @@ public class AnalizadorEstadisticas
                 else
                 {
 
-                   System.out.println("    Total Semana: $" + sumadorSemana);
-                   System.out.println("\t\t\t\t    Promedio Semanal: $" + promedioPrecio(sumadorSemana, contadorSemana));
+                   System.out.println("    Total Semana: $" + round(sumadorSemana, 2));
+                   System.out.println("\t\t\t\t    Promedio Semanal: $" + round(promedioPrecio(sumadorSemana, contadorSemana), 2));
 
 
                    System.out.println("  Total Mes: $" + sumadorMes);
-                   System.out.println("\t\t\t\t    Promedio Mensual: $" + promedioPrecio(sumadorMes, contadorMes));
+                   System.out.println("\t\t\t\t    Promedio Mensual: $" + round(promedioPrecio(sumadorMes, contadorMes), 2));
 
                    System.out.println(" Total Año: $" + sumadorAnno);
-                   System.out.println("\t\t\t\t    Promedio Anual: $" + promedioPrecio(sumadorAnno, contadorAnno));
+                   System.out.println("\t\t\t\t    Promedio Anual: $" + round(promedioPrecio(sumadorAnno, contadorAnno), 2));
 
 
                    contadorSemana = resolvContador(atracciones, 0);
@@ -671,14 +671,14 @@ public class AnalizadorEstadisticas
                     month = fecha.getMonthValue();
                     daysInMonth = fecha.lengthOfMonth();
 
-                    System.out.println("    Total Semana: $" + sumadorSemana);
-                    System.out.println("\t\t\t\t    Promedio Semanal: " + promedioPrecio(sumadorSemana, contadorSemana));
+                    System.out.println("    Total Semana: $" + round(sumadorSemana, 2));
+                    System.out.println("\t\t\t\t    Promedio Semanal: " + round(promedioPrecio(sumadorSemana, contadorSemana), 2));
 
                     System.out.println("  Total Mes: $" + sumadorMes);
-                    System.out.println("\t\t\t\t    Promedio Mensual: " + promedioPrecio(sumadorMes, contadorMes));
+                    System.out.println("\t\t\t\t    Promedio Mensual: " + round(promedioPrecio(sumadorMes, contadorMes), 2));
 
                     System.out.println(" Total Año: $" + sumadorAnno);
-                    System.out.println("\t\t\t\t    Promedio Anual: $" + promedioPrecio(sumadorAnno, contadorAnno));
+                    System.out.println("\t\t\t\t    Promedio Anual: $" + round(promedioPrecio(sumadorAnno, contadorAnno), 2));
                 }
                 else
                 {
@@ -739,16 +739,11 @@ public class AnalizadorEstadisticas
       return sumador;
     }
 
-    private void actualizarNivel(List<AtraccionIF> atracciones, int contadorSemana, float sumadorSemana, int contadorMes, float sumadorMes, int contadorAnno, float sumadorAnno)
+    private float round(float d, int decimalPlace)
     {
-      contadorSemana = resolvContador(atracciones, contadorSemana);
-      sumadorSemana = resolvSumador(atracciones, sumadorSemana);
-
-      contadorMes = resolvContador(atracciones, contadorMes);
-      sumadorMes = resolvSumador(atracciones, sumadorMes);
-
-      contadorAnno = resolvContador(atracciones, contadorAnno);
-      sumadorAnno = resolvSumador(atracciones, sumadorAnno);
+        BigDecimal bd = new BigDecimal(Float.toString(d));
+        bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
+        return bd.floatValue();
     }
 
 

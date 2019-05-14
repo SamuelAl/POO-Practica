@@ -1,6 +1,7 @@
 
 /**
- * Write a description of class AtraccionesFuncionando here.
+ * Clase AtraccionesFuncionando, que almacena y suministra
+ * las atracciones activas en determinadas fechas del año.
  *
  * @author (Samuel Alarco)
  * @version (v1.0)
@@ -22,6 +23,15 @@ public class AtraccionesFuncionando
     }
 
 
+  /**
+   * Metodo addAtraccion
+   *
+   * Metodo para añadir listas de atracciones
+   * activas para un determinado periodo del año
+   *
+   * @param periodo Periodo en que las atracciones de la lista estaran activas
+   * @param atracciones Lista de atracciones activas durante dicho periodo
+   */
   public void addAtraccion(PeriodoTemporada periodo, List<AtraccionIF> atracciones)
   {
     PeriodoTemporada key = buscarPeriodo(periodo);
@@ -48,6 +58,15 @@ public class AtraccionesFuncionando
     }
   }
 
+  /**
+   * Metodo getAtracciones
+   *
+   * Metodo que devuelve una lista de atracciones activas
+   * en la fecha dada.
+   *
+   * @param fecha Fecha en la que se buscan atracciones activas
+   * @return Lista de atracciones activas para dicha fecha
+   */
   public List<AtraccionIF> getAtracciones(LocalDate fecha)
   {
     for (PeriodoTemporada periodo : atraccionesActivas.keySet())
@@ -57,6 +76,14 @@ public class AtraccionesFuncionando
     return new LinkedList<AtraccionIF>();
   }
 
+  /**
+   * Metodo buscarPeriodo
+   *
+   * Metodo privado para verificar si un periodo dado existe
+   *
+   * @param periodo Periodo que se debe buscar en el HashMap
+   * @return True: si periodo encontrada; False: si periodo no existen en el HashMap
+   */
   private PeriodoTemporada buscarPeriodo(PeriodoTemporada periodo)
   {
     if (!atraccionesActivas.isEmpty())
@@ -76,6 +103,15 @@ public class AtraccionesFuncionando
     }
   }
 
+  /**
+   * Metodo buscarCoincidencias
+   *
+   * Metodo para verificar si periodo dado coincide con
+   * otros periodos en existentes en el HashMap
+   *
+   * @param periodo Periodo para la busqueda
+   * @return True: Si existe coincidendia; False: Si no se encuentra coincidencia
+   */
   private boolean buscarCoincidencias(PeriodoTemporada periodo)
   {
     for (PeriodoTemporada key : atraccionesActivas.keySet())

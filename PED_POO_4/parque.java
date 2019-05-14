@@ -37,8 +37,9 @@ public class parque
         System.out.println();
         GeneradorVisitantes.generarVisitantes(manager);
         analizador.resumenVisitantesTipo();
-
-        //analizador.resumenGastoPersonal(2019);
+        System.out.println();
+        System.out.println("Generando Resumen Anual del Gasto de Personal para el año 2019...");
+        analizador.resumenGastoPersonal(2019);
 
     }
 }
