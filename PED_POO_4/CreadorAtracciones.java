@@ -1,9 +1,10 @@
 
 /**
- * Write a description of class CreadorAtracciones here.
+ * Esta clase se ocupa de la creacion
+ * de nuevas atracciones.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Samuel Alarco)
+ * @version (v1.0)
  */
 
 import java.util.List;
@@ -19,6 +20,16 @@ public class CreadorAtracciones
        
     }
 
+    /**
+     * Method nuevaAtraccion
+     * 
+     * Crea y devuelve una nueva atraccion
+     * segun el tipo de atraccion 
+     * especificado
+     *
+     * @param tipo Tipo de atraccion (String)
+     * @return Nueva atraccion
+     */
     public AtraccionIF nuevaAtraccion(String tipo)
     {
         switch(tipo) {
