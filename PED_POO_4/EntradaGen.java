@@ -1,9 +1,11 @@
 
 /**
- * Write a description of class EntradaGen here.
+ * Implementacion general de la interfaz EntradaIF.
+ * Ofrece la funcionalidad general de las entradas
+ * del parque de atracciones
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Samuel Alarco)
+ * @version (v1.0)
  */
 
 import java.util.HashMap;
@@ -24,18 +26,18 @@ public class EntradaGen implements EntradaIF
     private boolean isFamilia;
     private String temporada;
     
-    private Temporadas temporadas = new Temporadas();
-    public static float DESCUENTO_FAMILIA = 10 ;
-
+    private Temporadas temporadas;
+    
     /**
      * Constructor for objects of class EntradaGen
      */
-    public EntradaGen(LocalDate fecha, int edad)
+    public EntradaGen(LocalDate fecha, int edad, Temporadas temporadas)
     {
         this.fecha = fecha;
         this.edad = edad;
         precio = PARAMETROS.PRECIO_BASE;
         descuentosApl = new HashMap<String, Float>();
+        this.temporadas = temporadas;
     }
     
     /**
@@ -49,11 +51,28 @@ public class EntradaGen implements EntradaIF
         return this.edad;
     }
     
+    /**
+     * Method getPrecio
+     * 
+     * Metodo que devuelve el precio 
+     * de la entrada
+     *
+     * @return Precio de la entrada
+     */
     public float getPrecio()
     {
         return precio;
     }
     
+    /**
+     * Method applyDescuento
+     * 
+     * Metodo para aplicar descuentos a la 
+     * entrada, modificando el precio.
+     *
+     * @param tipo Identificador del descuento en formato string
+     * @param descuento Valor del descuento (porcentaje)
+     */
     public void applyDescuento(String tipo ,float descuento)
     {
         if (descuentoTotal < 90)
@@ -61,21 +80,6 @@ public class EntradaGen implements EntradaIF
             precio = precio * ((100 - descuento)/100);
             descuentosApl.put(tipo, descuento);
             descuentoTotal += descuento;
-            if (isVIP && !VIPAplicado) 
-            {
-                if (tipo.equals("senior"))
-                {
-                    precio += (precio * (0.83333));
-                } else if (tipo.equals("niño"))
-                {
-                    precio += (precio * (0.83333));
-                } else 
-                {
-                    precio += PARAMETROS.PRECIO_VIP_BASE;
-                }
-                
-                VIPAplicado = true;
-            }
         }
         else
         {
@@ -83,6 +87,16 @@ public class EntradaGen implements EntradaIF
         }
     }
 
+    /**
+     * Method getTipo
+     * 
+     * Devuelve un objeto string con el 
+     * tipo de entrada. Esto se construye a partir
+     * de los descuentos aplicados, que identifican
+     * la entrada
+     *
+     * @return El tipo de entrada
+     */
     public String getTipo()
     {
         String tipos = "";
@@ -95,42 +109,116 @@ public class EntradaGen implements EntradaIF
     }
     
     
+     /**
+      * Method getDate
+      * 
+      * Devuelve la fecha de compra
+      * de la entrada
+      *
+      * @return Fecha de la compra (LocalDate)
+      */
      public LocalDate getDate()
     {
         return this.fecha;
     }
     
+    /**
+     * Method getVIP
+     * 
+     * Indica si la entrada es una
+     * entrada VIP o no
+     *
+     * @return True si la entrada es VIP
+     */
     public boolean getVIP()
     {
         return this.isVIP;
     }
     
+    /**
+     * Method setVIP
+     * 
+     * Convierte entrada en entrada VIP
+     * Utiliza porcentajes especificados en el 
+     * enunciado para calcular el precio de
+     * la entrada VIP para niños y seniors
+     *
+     */
     public void setVIP()
     {
         isVIP = true;
+        if (!VIPAplicado) 
+            {
+                if (descuentosApl.containsKey("senior"))
+                {
+                    precio += (precio * (0.83333));
+                } else if (descuentosApl.containsKey("niño"))
+                {
+                    System.out.println("descuento niño");
+                    precio += (precio * (0.83333));
+                } else 
+                {
+                    precio += PARAMETROS.PRECIO_VIP_BASE;
+                }
+                
+                VIPAplicado = true;
+            }
     }
     
+    /**
+     * Method getTemporada
+     * 
+     * Devuelve la temporada en la que se ha
+     * comprado la entrada
+     *
+     * @return Temporada en la que se ha comprado la entrada (String)
+     */
     public String getTemporada()
     {
         return this.temporada;
     }
     
+    /**
+     * Method setTemporada
+     * 
+     * Metodo para que la entrada calcule 
+     * la temporada en la que se compra
+     * a partir de la lista de temporadas suministrada
+     * por la MaquinaEntradas
+     *
+     */
     public void setTemporada()
     {
         this.temporada = temporadas.checkTemporada(fecha);
         precio = precio * (temporadas.get(temporada) / 100);
     }
     
+    /**
+     * Method getFamilia
+     * 
+     * Indica si la entrada es una entrada
+     * familiar o no
+     *
+     * @return True: Si la entrada es familiar
+     */
     public boolean getFamilia()
     {
         return this.isFamilia;
     }
     
+    /**
+     * Method setFamilia
+     * 
+     * Convierte la entrada en una entrada familiar, 
+     * aplicando el descuento apropiado
+     *
+     */
     public void setFamilia()
     {
         isFamilia = true;
         if (isFamilia) 
-            {precio = precio * ((100 - DESCUENTO_FAMILIA) / 100);
-        }
+            {
+                applyDescuento("Familia" ,PARAMETROS.DESCUENTO_FAMILIA);
+            }
     }
 }

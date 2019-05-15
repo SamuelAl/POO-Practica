@@ -1,9 +1,10 @@
 
 /**
- * Write a description of class BuscadorDescuentos here.
+ * Clase que se ocupa de almacenar y suministrar los posibles
+ * descuentos de las entradas.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Samue Alarco)
+ * @version (v1.0)
  */
 import java.util.HashMap;
 
@@ -26,8 +27,45 @@ public class BuscadorDescuentos
         mapaDescuentos.put("senior", 35f);
     }
 
+    /**
+     * Method getDescuento
+     * 
+     * Metodo para buscar un descuento especifico
+     *
+     * @param key Clave del descuento
+     * @return Valor (porcentaje) del descuento
+     */
     public float getDescuento(String key)
     {
-        return mapaDescuentos.get(key);
+        if (mapaDescuentos.containsKey(key))
+        {
+            return mapaDescuentos.get(key);
+        }
+        else
+        {
+            System.out.println("Descuento no existe");
+            return 0f; // No se aplica ningun descuento
+        }
+    }
+    
+    /**
+     * Method addDescuento
+     *
+     * Metodo para añdir nuevos descuentos 
+     * al objeto
+     *
+     * @param key Identificacion del descuento (String)
+     * @param descuento Valor del descuento (porcentaje a descontar)
+     */
+    public void addDescuento(String key, float descuento)
+    {
+        if (descuento < 1)
+        {
+            System.out.println("Descuento no valido");
+        }
+        else
+        {
+            mapaDescuentos.put(key, descuento);
+        }
     }
 }

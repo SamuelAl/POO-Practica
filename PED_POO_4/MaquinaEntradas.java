@@ -16,6 +16,7 @@ public class MaquinaEntradas
    private EntradaIF entradaActual;
    private EntradaGen ultimoAdulto;
    private BuscadorDescuentos buscadorDescuentos;
+   private Temporadas temporadas;
    
 
     /**
@@ -24,6 +25,7 @@ public class MaquinaEntradas
     public MaquinaEntradas()
     {
         buscadorDescuentos = new BuscadorDescuentos();
+        temporadas = new Temporadas();
     }
 
     
@@ -31,12 +33,10 @@ public class MaquinaEntradas
                                 boolean isVIP, 
                                boolean isFamilia, String descuento)
     {
-        EntradaIF entrada = new EntradaGen(fecha, edad);
+        EntradaIF entrada = new EntradaGen(fecha, edad, temporadas);
         entrada.setTemporada();
         entradaActual = entrada;
         
-        if (isVIP) {setVIP();}
-        if (isFamilia) {setFamilia();}
         if (!descuento.equals("ninguno")) 
         {
             String tmp[] = descuento.split(",");
@@ -46,6 +46,10 @@ public class MaquinaEntradas
             }
             
         }
+        
+        if (isVIP) {setVIP();}
+        if (isFamilia) {setFamilia();}
+        
         ultimoAdulto = (EntradaGen)entrada;
         return entrada;
     }
@@ -77,12 +81,13 @@ public class MaquinaEntradas
                                 boolean isVIP, 
                                boolean isFamilia, String descuento)
     {
-        EntradaIF entrada = new Niño(fecha, edad, ultimoAdulto);
+        EntradaIF entrada = new Niño(fecha, edad, temporadas, ultimoAdulto);
         entrada.setTemporada();
         
+
+        if (!descuento.equals("ninguno")) {setDescuento(descuento);}
         if (isVIP) {setVIP();}
         if (isFamilia) {setFamilia();}
-        if (!descuento.equals("ninguno")) {setDescuento(descuento);}
         return entrada;
     }
     

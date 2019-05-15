@@ -51,5 +51,54 @@ public class Temporadas
         }
        
         return "tempMedia";
+   }
+   
+   public void addPeriodoTemporada(PeriodoTemporada periodo, String temporada)
+   {
+       if (mapaDescuentosTemporadas.containsKey(temporada) && !buscarCoincidencias(periodo))
+       {
+           mapaTemporadas.put(periodo, temporada);
+       }
+       else
+       {
+           System.out.println("Temporada no existe");
+       }
+   }
+   
+   public void addTemporada(String clave, float descuento)
+   {
+       if (descuento > 0)
+       {
+           mapaDescuentosTemporadas.put(clave, descuento);
+       }
+       else
+       {
+           System.out.println("Descuento no valido");
+       }
+       
+   }
+   
+  
+  /**
+   * Metodo buscarCoincidencias
+   *
+   * Metodo para verificar si periodo dado coincide con
+   * otros periodos en existentes en el HashMap
+   *
+   * @param periodo Periodo para la busqueda
+   * @return True: Si existe coincidendia; False: Si no se encuentra coincidencia
+   */
+  private boolean buscarCoincidencias(PeriodoTemporada periodo)
+  {
+    for (PeriodoTemporada key : mapaTemporadas.keySet())
+    {
+      if (key.enPeriodo(periodo.getFechaInic())
+          || key.enPeriodo(periodo.getFechaFinal())
+          || ((key.getFechaInic().compareTo(periodo.getFechaInic()) < 0) && (key.getFechaFinal().compareTo(periodo.getFechaFinal()) > 0)))
+          {
+            return true;
+          }
     }
+    return false;
+  }
 }
