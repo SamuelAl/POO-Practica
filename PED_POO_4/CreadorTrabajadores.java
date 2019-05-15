@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class CreadorTrabajadores here.
+ * Clase que se ocupa de la creacion de nuevos trabajadores.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Samuel Alarco)
+ * @version (v1.0)
  */
 public class CreadorTrabajadores
 {
@@ -17,6 +17,16 @@ public class CreadorTrabajadores
     {
     }
 
+    /**
+     * Method nuevoTrabajador
+     *
+     * Crea y devuelve un nuevo trabajador
+     * segun el tipo de trabajador especificado
+     * en el parametro
+     *
+     * @param tipo Tipo de trabajador (TiposTrabajadores)
+     * @return Nuevo trabajador
+     */
     public Trabajador nuevoTrabajador(TiposTrabajadores tipo)
     {
         switch (tipo)

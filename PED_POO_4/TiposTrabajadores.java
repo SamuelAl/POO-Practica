@@ -1,9 +1,10 @@
 
 /**
- * Enumeration class TiposTrabajadores - write a description of the enum class here
+ * Esta clase enumera los diferentes tipos de trabajadores
+ * del parque
  *
- * @author (your name here)
- * @version (version number or date here)
+ * @author (Samuel Alarco)
+ * @version (v1.0)
  */
 public enum TiposTrabajadores
 {

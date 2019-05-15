@@ -1,9 +1,10 @@
 
 /**
- * Write a description of class AyudanteAtraccion here.
+ * Extiende clase Trabajador para
+ * Ayudante de Atraccion.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Samuel Alarco)
+ * @version (v1.0)
  */
 public class AyudanteAtraccion extends Trabajador
 {
@@ -20,11 +21,25 @@ public class AyudanteAtraccion extends Trabajador
     }
     
 
+   /**
+    * Method getTipo
+    * 
+    * Devuelve el tipo de trabajador
+    *
+    * @return The return value
+    */
    public TiposTrabajadores getTipo()
    {
        return tipo;
    }
    
+   /**
+    * Method getSueldo
+    * 
+    * Devuelve el sueldo del trabajador
+    *
+    * @return The return value
+    */
    public float getSueldo()
    {
        return sueldo;

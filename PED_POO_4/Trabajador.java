@@ -1,6 +1,7 @@
 
 /**
- * Write a description of interface Trabajador here.
+ * Clase abstracta Trabajador con metodos
+ * comunes a todos los trabajadores.
  *
  * @author (Samuel Alarco)
  * @version (v1.0)

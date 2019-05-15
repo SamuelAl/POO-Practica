@@ -37,6 +37,18 @@ public class ParqueManager
 
     }
 
+    /**
+     * Method addEntrada
+     * 
+     * Crea una nueva entrada (EntradaGen)
+     * y la añade a la lista de entradas
+     *
+     * @param fecha Fecha de compra de la entrada
+     * @param edad Edad del visitante
+     * @param isVIP Si la entrada es VIP
+     * @param isFamilia Si es una entrada familias
+     * @param descuento Descuentos aplicados
+     */
     public void addEntrada(LocalDate fecha, int edad,
                            boolean isVIP, boolean isFamilia,
                            String descuento)
@@ -45,7 +57,19 @@ public class ParqueManager
                                                     isVIP, isFamilia, descuento);
         EntradasParque.add(entrada);
     }
-
+    
+    /**
+     * Method addEntradaNiño
+     * 
+     * Crea una nueva entrada tipo niño (Niño)
+     * y la añade a la lista de entradas
+     *
+     * @param fecha Fecha de compra de la entrada
+     * @param edad Edad del visitante
+     * @param isVIP Si la entrada es VIP
+     * @param isFamilia Si es una entrada familias
+     * @param descuento Descuentos aplicados
+     */
     public void addEntradaNiño(LocalDate fecha, int edad,
                            boolean isVIP, boolean isFamilia,
                            String descuento)
@@ -55,12 +79,29 @@ public class ParqueManager
         EntradasParque.add(entrada);
     }
 
+    /**
+     * Method addTrabajador
+     * 
+     * Crea y añade un nuevo trabajador del tipo
+     * especificado en el parametro
+     * 
+     * @param tipo Tipo de trabajador (TiposTrabajadores)
+     */
     public void addTrabajador(TiposTrabajadores tipo)
     {
         Trabajador trabajador = generadorTrabajadores.nuevoTrabajador(tipo);
         TrabajadoresParque.add(trabajador);
     }
 
+    /**
+     * Method addAtraccion
+     * 
+     * Crea una nueva atraccion y la añade a la lista
+     * de atracciones. Tambien se ocupa de crear los trabajdores necesarios 
+     * para el uso de la atraccion y los añade a a la lista de trabajadores.
+     *
+     * @param tipo Tipo de atraccion
+     */
     public void addAtraccion(String tipo)
     {
         AtraccionIF atraccion = generadorAtracciones.nuevaAtraccion(tipo);
@@ -82,6 +123,15 @@ public class ParqueManager
         AtraccionesParque.add(atraccion);
     }
 
+    /**
+     * Method getNumTrabajadores
+     * 
+     * Devuelve el numero de trabajadores
+     * del parque de un cierto tipo
+     *
+     * @param tipo Tipo de trabajadors
+     * @return Numero de trabajadores
+     */
     public int getNumTrabajadores(TiposTrabajadores tipo)
     {
         int n = 0;
@@ -97,22 +147,53 @@ public class ParqueManager
         return n;
     }
 
+    /**
+     * Method getNumTrabajadores
+     * 
+     * Devuelve el numero total de trabajadores del parque.
+     *
+     * @return Total de trabajadores del parque
+     */
     public int getNumTrabajadores()
     {
         return TrabajadoresParque.size();
     }
 
+    /**
+     * Method getNumVisitantes
+     * 
+     * Devuelve el total de visitantes
+     * del parque
+     *
+     * @return Total de visitantes del parque
+     */
     public int getNumVisitantes()
     {
         return EntradasParque.size();
     }
 
+    /**
+     * Method usarAtraccion
+     * 
+     * Metodo de apoyo para usar una atraccion
+     * especifica
+     *
+     * @param index Referencia a la atraccion en la lista de atracciones (indice)
+     * @param entrada Entrada del visitante que usa la atraccion
+     */
     public void usarAtraccion(int index, EntradaIF entrada)
     {
         AtraccionesParque.get(index).usar(entrada);
     }
 
-    //Funcion para generar uso aleatorio de atracciones
+    
+    /**
+     * Method randomUsarAtracciones
+     * 
+     * Metodo de apoyo que genera un uso
+     * aleatorio de las atracciones del parque
+     *
+     */
     public void randomUsarAtracciones()
     {
         for (AtraccionIF atraccion : AtraccionesParque)
@@ -131,6 +212,14 @@ public class ParqueManager
         }
     }
 
+    /**
+     * Method setContenidoAtraccionesFuncionando
+     * 
+     * Genera contenido para el objeto clase AtraccionesFuncionando
+     * Que despues se usara en las estadisticas
+     * Las atracciones funcionando se turnan en dos periodos (mitades del año 2019)
+     *
+     */
     public void setContenidoAtraccionesFuncionando()
     {
       List<AtraccionIF> atraccFuc1 = new LinkedList<AtraccionIF>();
@@ -147,6 +236,13 @@ public class ParqueManager
       atraccionesFuncionando.addAtraccion(new PeriodoTemporada(LocalDate.of(2019, Month.JUNE, 1), LocalDate.of(2019, Month.DECEMBER, 31)), atraccFuc2);
     }
 
+    /**
+     * Method analisisEstadistico
+     * 
+     * Crea y devuelve un nuevo objeto AnalizadorEstadisticas
+     *
+     * @return Objeto AnalizadorEstadisticas
+     */
     public AnalizadorEstadisticas analisisEstadistico()
     {
         AnalizadorEstadisticas analizador = new AnalizadorEstadisticas(EntradasParque, AtraccionesParque, TrabajadoresParque, atraccionesFuncionando);

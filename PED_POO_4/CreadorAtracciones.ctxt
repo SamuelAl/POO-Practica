@@ -5,4 +5,5 @@ comment1.target=CreadorAtracciones()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ CreadorAtracciones\r\n
 comment2.params=tipo
 comment2.target=AtraccionIF\ nuevaAtraccion(java.lang.String)
+comment2.text=\r\n\ Method\ nuevaAtraccion\r\n\ \r\n\ Crea\ y\ devuelve\ una\ nueva\ atraccion\r\n\ segun\ el\ tipo\ de\ atraccion\ \r\n\ especificado\r\n\r\n\ @param\ tipo\ Tipo\ de\ atraccion\ (String)\r\n\ @return\ Nueva\ atraccion\r\n
 numComments=3
