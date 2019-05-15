@@ -29,6 +29,13 @@ public class AnalizadorEstadisticas
         this.atraccionesActivas = atraccionesAct;
     }
 
+    /**
+     * Metodo resumenAtracciones
+     * 
+     * Imprime en pantalla un recuento de las
+     * atracciones creadas en el parque
+     *
+     */
     public void resumenAtracciones()
     {
         int[] numeroAtracciones = new int[5];
@@ -60,6 +67,15 @@ public class AnalizadorEstadisticas
         System.out.println("Atracciones Tipo E: " + numeroAtracciones[4]);
     }
 
+    /**
+     * Metodo resumenTrabajadoresTipo
+     * 
+     * Cuenta el numero de trabajadores del tipo
+     * especificado y lo devuelve como entero
+     *
+     * @param tipo Tipo de trabajador (TiposTrabajadores)
+     * @return Numero de trabajadores del tipo especificado (entero)
+     */
     public int resumenTrabajadoresTipo(TiposTrabajadores tipo)
     {
         int n = 0;
@@ -75,6 +91,13 @@ public class AnalizadorEstadisticas
         return n;
     }
 
+    /**
+     * Metodo resumenVisitantesTipo
+     * 
+     * Imprime en pantalla un recuento de los visitantes 
+     * del parque agrupados por tipo/descuento de la entrada
+     *
+     */
     public void resumenVisitantesTipo()
     {
       HashMap<String, Integer> tiposVisitantes = new HashMap();
@@ -96,23 +119,59 @@ public class AnalizadorEstadisticas
       }
     }
 
+    /**
+     * Metodo resumenVisitantes
+     * 
+     * Genera estadisticas sobre el numero de visitantes
+     * por dia, semana, mes y año, y lo imprime en pantalla.
+     * Usa funcion analisisPorFecha(ListaEntradas) como soporte.
+     *
+     */
     public void resumenVisitantes()
     {
         analisisPorFechas(ListaEntradas);
     }
 
+    /**
+     * Method promedioSemanal
+     * 
+     * Calcula un promedio semanal de un entero 
+     * (lo divide por siete)
+     *
+     * @param n Entero del que se quiere calcular el promedio semanal
+     * @return Promedio semanal (float)
+     */
     private float promedioSemanal(int n)
     {
         float promedio = (float) (n*1.0f/7);
         return promedio;
     }
 
+    /**
+     * Method promedioMensual
+     * 
+     * Calcula el promedio mensual de un entero
+     * dividiendolo por el numero de dias del mes
+     *
+     * @param n Entero del que se quiere calcular el promedio mensual
+     * @param m Numero de dias del mes
+     * @return Promedio mensual (float)
+     */
     private float promedioMensual(int n, int m)
     {
         float promedio = (float) ((n*1.0f)/m);
         return promedio;
     }
 
+    /**
+     * Method promedioAnual
+     * 
+     * Calcula el promedio anual de un entero,
+     * dividiendolo por el numero de dias de un año natural
+     *
+     * @param n Entero del que se quiere calcular el promedio anual
+     * @return Promedio anual
+     */
     private float promedioAnual(int n)
     {
         float promedio = (float) ((n*1.0f)/365);
@@ -121,6 +180,14 @@ public class AnalizadorEstadisticas
 
     //RESUMEN PRECIOS
 
+    /**
+     * Method resumenPrecios
+     * 
+     * Genera estadisticas sobre los precios de las entradas y sus promedios
+     * agrupando los contenidos por dias, semanas, meses y dias del año.
+     * El contenido se imprime en pantalla.
+     *
+     */
     public void resumenPrecios()
     {
         int dia = ListaEntradas.get(0).getDate().getDayOfMonth();
@@ -316,12 +383,29 @@ public class AnalizadorEstadisticas
         }
     }
 
+    /**
+     * Method promedioPrecio
+     * 
+     * Funcion para calcular un promedio, dividiendo por n
+     *
+     * @param imp Float del que se quiere calcular el promedio
+     * @param n Entero por el que se desea dividir
+     * @return Promedio de n / m
+     */
     private float promedioPrecio (float imp, int n)
     {
       float promedio = (float) (imp*1.0f)/n;
       return promedio;
     }
 
+    /**
+     * Method resumenVisitasAtracciones
+     * 
+     * Calcula estadisticas sobre el uso de las atracciones
+     * del parque, agrupando por dia, semana, mes y año.
+     * Imprimer resultados en pantalla
+     *
+     */
     public void resumenVisitasAtracciones()
     {
       int counter = 1;
@@ -341,6 +425,16 @@ public class AnalizadorEstadisticas
       }
     }
 
+    /**
+     * Method analisisPorFechas
+     * 
+     * Funcion base para generar las estadisticas sobre entradas
+     * agrupadas por dias, semana, mes y año. Codigo se puede
+     * reutilizar, con ligeras modificaciones, para otros
+     * tipos de lista
+     *
+     * @param listaEntradas A parameter
+     */
     private void analisisPorFechas(List<EntradaIF> listaEntradas)
     {
       int dia = listaEntradas.get(0).getDate().getDayOfMonth();
@@ -517,6 +611,16 @@ public class AnalizadorEstadisticas
       }
     }
 
+    /**
+     * Metodo resumenGastoPersonal
+     * 
+     * Calcula estadisticas sobre los gastos de personal
+     * en el parque de atracciones en un año natural,
+     * tomando en cuenta las fluctuaciones durante el año
+     * dado que ciertas atracciones pueden estar activas o no
+     *
+     * @param year Año del que se quiere hacer el analisis.
+     */
     public void resumenGastoPersonal(int year)
     {
 
@@ -694,6 +798,17 @@ public class AnalizadorEstadisticas
       }
     }
 
+    /**
+     * Method resolvContador
+     * 
+     * Funcion de ayuda para las estadisticas de gasto personal,
+     * que se encarga de actualizar un contador de trabajadores
+     * a partir de la lista de atracciones suministrada
+     *
+     * @param atracciones Lista de atracciones a analizar
+     * @param n Valor actual del contador (entero)
+     * @return Valor actualizado del contador (entero)
+     */
     private int resolvContador(List<AtraccionIF> atracciones, int n)
     {
       List<Trabajador> trabajadores;
@@ -717,6 +832,17 @@ public class AnalizadorEstadisticas
       return contador;
     }
 
+    /**
+     * Method resolvSumador
+     * 
+     * Funcion de ayuda para las estadisticas de gasto personal,
+     * que se encarga de actualizar un sumador de salario de los trabajadores
+     * a partir de la lista de atracciones suministrada
+     * 
+     * @param atracciones Lista de atracciones a analizar
+     * @param n Valor actual del sumador (float)
+     * @return Valor actualizado del sumador (float)
+     */
     private float resolvSumador(List<AtraccionIF> atracciones, float n)
     {
       List<Trabajador> trabajadores;
@@ -739,6 +865,15 @@ public class AnalizadorEstadisticas
       return sumador;
     }
 
+    /**
+     * Method round
+     * 
+     * Metodo para redondear valores float a dos decimales
+     *
+     * @param d Valor a redondear (float)
+     * @param decimalPlace Numero de decimales (entero)
+     * @return Valor redondeado (float)
+     */
     private float round(float d, int decimalPlace)
     {
         BigDecimal bd = new BigDecimal(Float.toString(d));
