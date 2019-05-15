@@ -1,6 +1,6 @@
 
 /**
- * Write a description of class AtraccionTipo here.
+ * Implementacion de la Atraccion Tipo A.
  *
  * @author (Samuel Alarco)
  * @version (v1.0)
@@ -43,11 +43,26 @@ public class AtraccionA implements AtraccionIF
         numAyuAtracc = 6;
     }
 
+    /**
+     * Method getTipo
+     * 
+     * Devuelve el tipo de atraccion
+     *
+     * @return Tipo de atraccion (String)
+     */
     public String getTipo()
     {
       return this.tipo;
     }
 
+    /**
+     * Method getVIP
+     * 
+     * Indica si la atraccion tiene
+     * acceso VIP.
+     *
+     * @return True si la atraccion tiene acceso VIP
+     */
     public boolean getVIP()
     {
         return accesoVIP;

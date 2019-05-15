@@ -17,7 +17,7 @@ public class MaquinaEntradas
    private EntradaGen ultimoAdulto;
    private BuscadorDescuentos buscadorDescuentos;
    private Temporadas temporadas;
-   
+
 
     /**
      * Constructor for objects of class MaquinaEntradas
@@ -28,32 +28,44 @@ public class MaquinaEntradas
         temporadas = new Temporadas();
     }
 
-    
-    public EntradaIF nuevaEntrada(LocalDate fecha, int edad, 
-                                boolean isVIP, 
+
+    /**
+     * Method nuevaEntrada
+     * 
+     * Crea y devuelve una nueva entrada general
+     * EntradaGen
+     *
+     * @param fecha Fecha de compra
+     * @param edad Edad de la persona
+     * @param isVIP Si es entrada VIP
+     * @param isFamilia Si es entrada Familiar
+     * @param descuento Lista de descuentos aplicables
+     * @return Nueva entrada (EntradaIF)
+     */
+    public EntradaIF nuevaEntrada(LocalDate fecha, int edad,
+                                boolean isVIP,
                                boolean isFamilia, String descuento)
     {
         EntradaIF entrada = new EntradaGen(fecha, edad, temporadas);
         entrada.setTemporada();
         entradaActual = entrada;
-        
-        if (!descuento.equals("ninguno")) 
+        if (isFamilia) {setFamilia();}
+        if (!descuento.equals("ninguno"))
         {
             String tmp[] = descuento.split(",");
             for (int i = 0; i < tmp.length; i++)
             {
                 setDescuento(tmp[i]);
             }
-            
+
         }
-        
+
         if (isVIP) {setVIP();}
-        if (isFamilia) {setFamilia();}
-        
+
         ultimoAdulto = (EntradaGen)entrada;
         return entrada;
     }
-    
+
     private void setFamilia()
     {
         if (entradaActual != null)
@@ -61,7 +73,7 @@ public class MaquinaEntradas
             entradaActual.setFamilia();
         }
     }
-    
+
     private void setVIP()
     {
         if (entradaActual != null)
@@ -69,30 +81,52 @@ public class MaquinaEntradas
             entradaActual.setVIP();
         }
     }
-    
+
     private void setDescuento(String descuento)
     {
         float fDescuento =  buscadorDescuentos.getDescuento(descuento);
         entradaActual.applyDescuento(descuento, fDescuento);
     }
-    
-    
-    public EntradaIF nuevaEntradaNiño(LocalDate fecha, int edad, 
-                                boolean isVIP, 
+
+
+    /**
+     * Method nuevaEntradaNiño
+     *
+     * Metodo para crear una nueva entrada
+     * de niño. Usa el campo ultimo adulto
+     * para añadir a la entrada un acompañante
+     *
+     * @param fecha Fecha de compra
+     * @param edad Edad de la persona
+     * @param isVIP Si es entrada VIP
+     * @param isFamilia Si es entrada Familiar
+     * @param descuento Lista de descuentos aplicables
+     * @return Nueva entrada (EntradaIF)
+     */
+    public EntradaIF nuevaEntradaNiño(LocalDate fecha, int edad,
+                                boolean isVIP,
                                boolean isFamilia, String descuento)
     {
-        EntradaIF entrada = new Niño(fecha, edad, temporadas, ultimoAdulto);
-        entrada.setTemporada();
-        
+        if(ultimoAdulto != null)
+        {
+          EntradaIF entrada = new Niño(fecha, edad, temporadas, ultimoAdulto);
+          entrada.setTemporada();
+          if (isFamilia) {setFamilia();}
 
-        if (!descuento.equals("ninguno")) {setDescuento(descuento);}
-        if (isVIP) {setVIP();}
-        if (isFamilia) {setFamilia();}
-        return entrada;
+          if (!descuento.equals("ninguno")) {setDescuento(descuento);}
+          if (isVIP) {setVIP();}
+          return entrada;
+        }
+        else
+        {
+          System.out.println("Se necesita un adulto");
+          return null;
+        }
+
     }
-    
-    
-    
-    
-    
+
+
+
+
+
 }
