@@ -15,4 +15,6 @@ comment5.target=void\ setDescuento(java.lang.String)
 comment6.params=fecha\ edad\ isVIP\ isFamilia\ descuento
 comment6.target=EntradaIF\ nuevaEntradaNi\u00F1o(java.time.LocalDate,\ int,\ boolean,\ boolean,\ java.lang.String)
 comment6.text=\r\n\ Method\ nuevaEntradaNi\u00F1o\r\n\r\n\ Metodo\ para\ crear\ una\ nueva\ entrada\r\n\ de\ ni\u00F1o.\ Usa\ el\ campo\ ultimo\ adulto\r\n\ para\ a\u00F1adir\ a\ la\ entrada\ un\ acompa\u00F1ante\r\n\r\n\ @param\ fecha\ Fecha\ de\ compra\r\n\ @param\ edad\ Edad\ de\ la\ persona\r\n\ @param\ isVIP\ Si\ es\ entrada\ VIP\r\n\ @param\ isFamilia\ Si\ es\ entrada\ Familiar\r\n\ @param\ descuento\ Lista\ de\ descuentos\ aplicables\r\n\ @return\ Nueva\ entrada\ (EntradaIF)\r\n
-numComments=7
+comment7.params=
+comment7.target=void\ imprimirDescuentosDisponibles()
+numComments=8

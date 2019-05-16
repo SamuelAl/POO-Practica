@@ -124,6 +124,11 @@ public class MaquinaEntradas
         }
 
     }
+    
+    public void imprimirDescuentosDisponibles()
+    {
+        buscadorDescuentos.mostrarDescuentos();
+    }
 
 
 

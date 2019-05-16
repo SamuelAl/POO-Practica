@@ -68,4 +68,12 @@ public class BuscadorDescuentos
             mapaDescuentos.put(key, descuento);
         }
     }
+    
+    public void mostrarDescuentos()
+    {
+        for (String descuento : mapaDescuentos.keySet())
+        {
+            System.out.println(descuento + ": " + mapaDescuentos.get(descuento) + "%");
+        }
+    }
 }

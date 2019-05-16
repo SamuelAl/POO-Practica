@@ -248,4 +248,9 @@ public class ParqueManager
         AnalizadorEstadisticas analizador = new AnalizadorEstadisticas(EntradasParque, AtraccionesParque, TrabajadoresParque, atraccionesFuncionando);
         return analizador;
     }
+    
+    public void imprimirDescuentos()
+    {
+        generadorEntradas.imprimirDescuentosDisponibles();
+    }
 }
