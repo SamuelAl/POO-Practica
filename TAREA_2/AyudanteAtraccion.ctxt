@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=AyudanteAtraccion
+comment0.text=\r\n\ Extiende\ clase\ Trabajador\ para\r\n\ Ayudante\ de\ Atraccion.\r\n\r\n\ @author\ (Samuel\ Alarco)\r\n\ @version\ (v1.0)\r\n
+comment1.params=
+comment1.target=AyudanteAtraccion()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ AtencionCl\r\n
+comment2.params=
+comment2.target=TiposTrabajadores\ getTipo()
+comment2.text=\r\n\ Method\ getTipo\r\n\ \r\n\ Devuelve\ el\ tipo\ de\ trabajador\r\n\r\n\ @return\ The\ return\ value\r\n
+comment3.params=
+comment3.target=float\ getSueldo()
+comment3.text=\r\n\ Method\ getSueldo\r\n\ \r\n\ Devuelve\ el\ sueldo\ del\ trabajador\r\n\r\n\ @return\ The\ return\ value\r\n
+numComments=4

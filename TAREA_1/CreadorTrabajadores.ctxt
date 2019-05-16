@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=CreadorTrabajadores
+comment0.text=\r\n\ Clase\ que\ se\ ocupa\ de\ la\ creacion\ de\ nuevos\ trabajadores.\r\n\r\n\ @author\ (Samuel\ Alarco)\r\n\ @version\ (v1.0)\r\n
+comment1.params=
+comment1.target=CreadorTrabajadores()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ CreadorTrabajadores\r\n
+comment2.params=tipo
+comment2.target=Trabajador\ nuevoTrabajador(TiposTrabajadores)
+comment2.text=\r\n\ Method\ nuevoTrabajador\r\n\r\n\ Crea\ y\ devuelve\ un\ nuevo\ trabajador\r\n\ segun\ el\ tipo\ de\ trabajador\ especificado\r\n\ en\ el\ parametro\r\n\r\n\ @param\ tipo\ Tipo\ de\ trabajador\ (TiposTrabajadores)\r\n\ @return\ Nuevo\ trabajador\r\n
+numComments=3
