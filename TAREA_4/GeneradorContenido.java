@@ -37,7 +37,6 @@ public class GeneradorContenido
             manager.addAtraccion("E");
         }
         
-        // Atracciones en uso
         
         
         System.out.println("Numero trabajadores: " + manager.getNumTrabajadores());
