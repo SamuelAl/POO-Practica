@@ -39,10 +39,10 @@ public class MenuInterface
         "  5) Salir\n "
         );
 
-        int selection = this.input.nextInt();
+        int seleccion = this.input.nextInt();
         input.nextLine();
 
-        switch (selection) {
+        switch (seleccion) {
         case 1:
           System.out.println("==========================");
           this.menuEntradas();
@@ -60,7 +60,7 @@ public class MenuInterface
         case 5:
             System.exit(1);
         default:
-          System.out.println("Invalid selection.");
+          System.out.println("Entrada Invalida.");
           break;
         }
     }
@@ -79,10 +79,10 @@ public class MenuInterface
         "  4) Salir\n "
         );
 
-        int selection = this.input.nextInt();
+        int seleccion = this.input.nextInt();
         input.nextLine();
 
-        switch (selection) {
+        switch (seleccion) {
         case 1:
           System.out.println("==========================");
           this.menuNuevaEntrada();
@@ -97,7 +97,7 @@ public class MenuInterface
         case 4:
             this.menu1();
         default:
-          System.out.println("Invalid selection.");
+          System.out.println("Entrada Invalida.");
           break;
         }
     }
@@ -113,10 +113,10 @@ public class MenuInterface
         "  3) Salir\n "
         );
 
-        int selection = this.input.nextInt();
+        int seleccion = this.input.nextInt();
         input.nextLine();
 
-        switch (selection) {
+        switch (seleccion) {
         case 1:
           System.out.println("==========================");
           this.menuNuevaEntradaGeneral(false);
@@ -128,7 +128,7 @@ public class MenuInterface
           this.menu1();
           break;
         default:
-          System.out.println("Invalid selection.");
+          System.out.println("Entrada Invalida.");
           break;
         }
     }
@@ -312,10 +312,10 @@ public class MenuInterface
       "  6) Salir\n "
       );
 
-      int selection = this.input.nextInt();
+      int seleccion = this.input.nextInt();
       input.nextLine();
 
-      switch (selection) {
+      switch (seleccion) {
       case 1:
         imprLineaBl();
         this.menuNuevaAtraccion();
@@ -335,7 +335,7 @@ public class MenuInterface
       case 6:
           menu1();
       default:
-        System.out.println("Invalid selection.");
+        System.out.println("Entrada Invalida.");
         break;
       }
 
@@ -375,10 +375,10 @@ public class MenuInterface
       "  4) Salir"
       );
 
-      int selection = this.input.nextInt();
+      int seleccion = this.input.nextInt();
       input.nextLine();
 
-      switch (selection) {
+      switch (seleccion) {
       case 1:
         imprLineaBl();
         this.menuNuevaAtraccionActiva();
@@ -395,7 +395,7 @@ public class MenuInterface
         break;
 
       default:
-        System.out.println("Invalid selection.");
+        System.out.println("Entrada Invalida.");
         break;
       }
 
@@ -532,10 +532,10 @@ public class MenuInterface
       "  2) Salir\n "
       );
 
-      int selection = this.input.nextInt();
+      int seleccion = this.input.nextInt();
       input.nextLine();
 
-      switch (selection) {
+      switch (seleccion) {
       case 1:
         imprLineaBl();
         resumenTrabajadores();;
@@ -544,7 +544,7 @@ public class MenuInterface
         menu1();
         break;
       default:
-        System.out.println("Invalid selection.");
+        System.out.println("Entrada Invalida.");
         break;
       }
     }
@@ -574,10 +574,10 @@ public class MenuInterface
       "  5) Salir"
       );
 
-      int selection = this.input.nextInt();
+      int seleccion = this.input.nextInt();
       input.nextLine();
 
-      switch (selection) {
+      switch (seleccion) {
       case 1:
         imprLineaBl();
         estadisticasVisitantes();
@@ -598,7 +598,7 @@ public class MenuInterface
         imprLineaBl();
         menu1();
       default:
-        System.out.println("Invalid selection.");
+        System.out.println("Entrada Invalida.");
         break;
       }
     }
