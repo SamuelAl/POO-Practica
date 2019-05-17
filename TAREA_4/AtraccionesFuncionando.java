@@ -9,6 +9,7 @@
 import java.util.List;
 import java.util.LinkedList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.time.*;
 
 public class AtraccionesFuncionando
@@ -18,13 +19,13 @@ public class AtraccionesFuncionando
 
     public AtraccionesFuncionando()
     {
-        atraccionesActivas = new HashMap<PeriodoTemporada, List<AtraccionIF> >();
+        atraccionesActivas = new LinkedHashMap<PeriodoTemporada, List<AtraccionIF> >();
     }
 
-    
+
   /**
    * Metodo addAtraccion
-   * 
+   *
    * Metodo para añadir listas de atracciones
    * activas para un determinado periodo del año
    *
@@ -36,12 +37,7 @@ public class AtraccionesFuncionando
     PeriodoTemporada key = buscarPeriodo(periodo);
     if (key != null)
     {
-      for (AtraccionIF atraccion : atracciones)
-      {
-        List<AtraccionIF> nuevaLista = new LinkedList<AtraccionIF>(atraccionesActivas.get(periodo));
-        nuevaLista.add(atraccion);
-        atraccionesActivas.put(periodo, nuevaLista);
-      }
+        atraccionesActivas.put(key, atracciones);
     }
     else
     {
@@ -59,7 +55,7 @@ public class AtraccionesFuncionando
 
   /**
    * Metodo getAtracciones
-   * 
+   *
    * Metodo que devuelve una lista de atracciones activas
    * en la fecha dada.
    *
@@ -75,9 +71,25 @@ public class AtraccionesFuncionando
     return new LinkedList<AtraccionIF>();
   }
 
+  public void imprPeriodos()
+  {
+    System.out.println("Atracciones Activas por Periodo");
+    for (PeriodoTemporada periodo : atraccionesActivas.keySet())
+    {
+      System.out.println();
+      System.out.println(periodo.getFechaInic() + " - " + periodo.getFechaFinal() + ": ");
+      int counter = 1;
+      for (AtraccionIF atraccion : atraccionesActivas.get(periodo))
+      {
+        System.out.println("Atraccion " + counter + " tipo " + atraccion.getTipo());
+        counter++;
+      }
+    }
+  }
+
   /**
    * Metodo buscarPeriodo
-   * 
+   *
    * Metodo privado para verificar si un periodo dado existe
    *
    * @param periodo Periodo que se debe buscar en el HashMap
@@ -104,7 +116,7 @@ public class AtraccionesFuncionando
 
   /**
    * Metodo buscarCoincidencias
-   * 
+   *
    * Metodo para verificar si periodo dado coincide con
    * otros periodos en existentes en el HashMap
    *

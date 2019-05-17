@@ -10,6 +10,8 @@ import java.util.Scanner;
 import java.time.*;
 import java.time.format.*;
 import java.util.HashMap;
+import java.util.List;
+import java.util.LinkedList;
 
 
 public class MenuInterface
@@ -17,16 +19,16 @@ public class MenuInterface
   Scanner input = new Scanner(System.in);
   ParqueManager manager;
   AnalizadorEstadisticas analizador;
-   
+
    public MenuInterface(ParqueManager manager)
    {
        this.manager = manager;
        analizador = manager.analisisEstadistico();
    }
-   
+
    public void menu1()
     {
-        System.out.println();
+        imprLineaBl();
         System.out.println("-- Menu Principal --");
         System.out.println(
         "Seleccione una opcion: \n" +
@@ -36,17 +38,18 @@ public class MenuInterface
         "  4) Menu Estadisticas\n" +
         "  5) Salir\n "
         );
-         
+
         int selection = this.input.nextInt();
         input.nextLine();
-        
+
         switch (selection) {
         case 1:
           System.out.println("==========================");
           this.menuEntradas();
           break;
         case 2:
-          //this.jump();
+          System.out.println("==========================");
+          this.menuAtracciones();
           break;
         case 3:
           //this.dodge();
@@ -61,10 +64,12 @@ public class MenuInterface
           break;
         }
     }
-    
+
+    /////////////////MENUS ENTRADA
+
     private void menuEntradas()
     {
-        System.out.println();
+        imprLineaBl();
         System.out.println("-- Menu Entradas --");
         System.out.println(
         "Seleccione una opcion: \n" +
@@ -73,10 +78,10 @@ public class MenuInterface
         "  3) Resumen Entradas \n" +
         "  4) Salir\n "
         );
-        
+
         int selection = this.input.nextInt();
         input.nextLine();
-        
+
         switch (selection) {
         case 1:
           System.out.println("==========================");
@@ -96,10 +101,10 @@ public class MenuInterface
           break;
         }
     }
-    
+
     private void menuNuevaEntrada()
     {
-        System.out.println();
+        imprLineaBl();
         System.out.println("-- Nueva Entrada --");
         System.out.println(
         "Seleccione una opcion: \n" +
@@ -107,10 +112,10 @@ public class MenuInterface
         "  2) Nueva Entrada Niño\n" +
         "  3) Salir\n "
         );
-        
+
         int selection = this.input.nextInt();
         input.nextLine();
-        
+
         switch (selection) {
         case 1:
           System.out.println("==========================");
@@ -127,20 +132,20 @@ public class MenuInterface
           break;
         }
     }
-    
+
     private void menuNuevaEntradaGeneral(boolean nino)
     {
         try {
         if(!nino) {System.out.println("-- Nueva Entrada General --");}
-        else {System.out.println("-- Nueva Entrada Niño --");}        
-        
+        else {System.out.println("-- Nueva Entrada Niño --");}
+
         System.out.print("Fecha de compra (dd/MM/uuuu):");
         String fechaIn = input.nextLine();
         LocalDate fecha;
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern ( "dd/MM/uuuu" );    
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern ( "dd/MM/uuuu" );
         fecha = LocalDate.parse ( fechaIn , formato );
         //System.out.println ( "ld: " + fecha );
-               
+
         System.out.print("Edad: ");
         int edad = input.nextInt();
         if (!nino)
@@ -162,7 +167,7 @@ public class MenuInterface
             }
         }
         input.nextLine();
-        
+
         System.out.print("Entrada VIP? (Y/N):");
         String VIPStr = input.nextLine();
         boolean vip;
@@ -174,7 +179,7 @@ public class MenuInterface
         }
         if (VIPStr.equals("Y")) {vip = true;}
         else {vip = false;}
-        
+
         System.out.print("Entrada Familiar? (Y/N):");
         String familiarStr = input.nextLine();
         boolean fam;
@@ -186,21 +191,21 @@ public class MenuInterface
         }
         if (familiarStr.equals("Y")) {fam = true;}
         else {fam = false;}
-        System.out.println();
-        
+        imprLineaBl();
+
         System.out.print("Descuentos Disponibles:\n");
         HashMap<String, Float> descuentos = manager.obtenerDescuentos();
         for (String key : descuentos.keySet())
         {
             System.out.println(key + ": " + descuentos.get(key) + "%");
         }
-        System.out.println();
+        imprLineaBl();
         System.out.print("Desea Añadir algun Descuento? (Y/N):");
         String addDescuento = input.nextLine();
         while (!addDescuento.equals("Y") && !addDescuento.equals("N"))
         {
             System.out.println("Decision invalida");
-            System.out.println();
+            imprLineaBl();
             System.out.print("Desea Añadir algun Descuento? (Y/N):");
             addDescuento = input.nextLine();
         }
@@ -225,13 +230,13 @@ public class MenuInterface
                 {
                     System.out.println("Descuento no existe");
                 }
-                System.out.println();
+                imprLineaBl();
                 System.out.print("Desea Añadir algun Descuento? (Y/N):");
                 addDescuento = input.nextLine();
              }
         }
-       
-        
+
+
         //Imprimir Resumen
         System.out.println("Resumen de la Entrada:");
         System.out.println("\tFecha: " + fecha);
@@ -240,32 +245,32 @@ public class MenuInterface
         {System.out.println("\tVIP: SI");}
         else
         {System.out.println("\tVIP: NO");}
-        
+
         if (fam)
         {System.out.println("\tFamiliar: SI");}
         else
         {System.out.println("\tFamiliar: NO");}
-        
+
         System.out.print("\t");
         String tmp[] = descuentoStr.split(";");
         for (int i = 0; i < tmp.length; i++)
         {
             System.out.print(tmp[i] + " - ");
         }
-        System.out.println();
-        
+        imprLineaBl();
+
         System.out.println("Confirmar Entrada? (Y/N)");
         String confirmar = input.nextLine();
         while (!confirmar.equals("Y") && !confirmar.equals("N"))
         {
             System.out.println("Decision invalida");
-            System.out.println();
+            imprLineaBl();
             System.out.print("Confirmar Entrada? (Y/N):");
             addDescuento = input.nextLine();
         }
         if (confirmar.equals("Y"))
         {
-            System.out.println();
+            imprLineaBl();
             if (!nino) {manager.addEntrada(fecha, edad, vip, fam, descuentoStr);}
             else {manager.addEntradaNiño(fecha, edad, vip, fam, descuentoStr);}
             menuNuevaEntrada();
@@ -275,20 +280,251 @@ public class MenuInterface
             System.out.println("Entrada Cancelada");
             menuNuevaEntrada();
         }
-        
-        System.exit(1);
-        } 
+
+        }
         catch ( DateTimeParseException e ) {
             System.out.println ( "Fecha Invalida");
             this.menuNuevaEntrada();
         }
     }
-    
+
     private void resumenVisitantes()
     {
-        System.out.println();
+        imprLineaBl();
         System.out.println("-- Resumen Visitantes --");
         analizador.resumenVisitantesTipo();
         menuEntradas();
     }
+
+    //////////// MENUS ATRACCIONES
+
+    private void menuAtracciones()
+    {
+      imprLineaBl();
+      System.out.println("-- Menu Atracciones --");
+      System.out.println(
+      "Seleccione una opcion: \n" +
+      "  1) Nueva Atraccion\n" +
+      "  2) Generar Atracciones\n" +
+      "  3) Activar/Desactivar Atracciones \n" +
+      "  4) Generar Uso Aleatorio de Atracciones\n" +
+      "  5) Resumen Atracciones\n" +
+      "  6) Salir\n "
+      );
+
+      int selection = this.input.nextInt();
+      input.nextLine();
+
+      switch (selection) {
+      case 1:
+        imprLineaBl();
+        this.menuNuevaAtraccion();
+        break;
+      case 2:
+        generarAtracciones();
+        break;
+      case 3:
+        menuAtraccionesActivas();
+        break;
+      case 4:
+        usoAleatorioAtracciones();
+        break;
+      case 5:
+        resumenAtracciones();
+        break;
+      case 6:
+          System.exit(1);
+      default:
+        System.out.println("Invalid selection.");
+        break;
+      }
+
+    }
+
+    private void menuNuevaAtraccion()
+    {
+      imprLineaBl();
+      System.out.print("Introducir Tipo de Atraccion (A, B, C, D, E): ");
+      String tipo = input.nextLine();
+      while (!tipo.equals("A") &&
+             !tipo.equals("B") &&
+             !tipo.equals("C") &&
+             !tipo.equals("D") &&
+             !tipo.equals("E")
+             )
+      {
+        System.out.println("Tipo Invalido");
+        System.out.print("Introducir Tipo de Atraccion (A, B, C, D, E): ");
+        tipo = input.nextLine();
+      }
+      manager.addAtraccion(tipo);
+      System.out.println("Atraccion Añadida con exito");
+      menuAtracciones();
+
+    }
+
+    private void menuAtraccionesActivas()
+    {
+      imprLineaBl();
+      System.out.println("-- Menu Atracciones --");
+      System.out.println(
+      "Seleccione una opcion: \n" +
+      "  1) Nuevo Periodo de Atracciones Activas\n" +
+      "  2) Generar Atracciones Activas\n" +
+      "  3) Resumen Atracciones Activas\n" +
+      "  5) Salir"
+      );
+
+      int selection = this.input.nextInt();
+      input.nextLine();
+
+      switch (selection) {
+      case 1:
+        imprLineaBl();
+        this.menuNuevaAtraccionActiva();
+        break;
+      case 2:
+        generarAtraccionesActivas();
+        break;
+      case 3:
+        resumenAtraccionesActivas();
+        menuAtracciones();
+        break;
+      case 4:
+        menuAtracciones();
+        break;
+
+      default:
+        System.out.println("Invalid selection.");
+        break;
+      }
+
+    }
+
+
+
+    private void generarAtracciones()
+    {
+      GeneradorContenido.generadorContenido(manager);
+      imprLineaBl();
+      System.out.println("-- Lista de Atracciones --");
+      analizador.resumenAtracciones();
+      menuAtracciones();
+    }
+
+    private void resumenAtracciones()
+    {
+      imprLineaBl();
+      System.out.println("-- Lista de Atracciones --");
+      analizador.resumenAtracciones();
+      menuAtracciones();
+    }
+
+    private void menuNuevaAtraccionActiva()
+    {
+      imprLineaBl();
+      System.out.println("-- Nuevo Periodo de Atracciones Activas --");
+      imprLineaBl();
+      System.out.println("Periodos Actuales:");
+      resumenAtraccionesActivas();
+      imprLineaBl();
+      System.out.println("Creacion de Nuevo Periodo:");
+      System.out.println("* Para modificar un periodo existente, entre las mismas fechas\n" +
+                         "* y cree una lista nueva. La lista nueva reemplazara la vieja");
+
+      System.out.print("Fecha Inicial: ");
+      String fechaInic = input.nextLine();
+      LocalDate fechaInicial;
+      DateTimeFormatter formato = DateTimeFormatter.ofPattern ( "dd/MM/uuuu" );
+      fechaInicial = LocalDate.parse ( fechaInic , formato );
+
+      System.out.print("  -  Fecha Final: ");
+      String fechaFin = input.nextLine();
+      LocalDate fechaFinal;
+      fechaFinal = LocalDate.parse ( fechaFin , formato );
+
+      PeriodoTemporada periodo = new PeriodoTemporada(fechaInicial, fechaFinal);
+
+      imprLineaBl();
+
+      List<AtraccionIF> atraccionesDisponibles = manager.getAtracciones();
+      List<AtraccionIF> atraccionesSeleccionadas = new LinkedList<AtraccionIF>();
+
+      System.out.println("Atracciones Disponibles: ");
+      int counter = 0;
+      for (AtraccionIF atraccion : atraccionesDisponibles)
+      {
+        System.out.println("Atraccion #" + counter + " tipo" + atraccion.getTipo());
+        counter++;
+      }
+
+      imprLineaBl();
+
+      String confirmar;
+      int atraccionIndex = 0;
+      do
+      {
+        System.out.print("Desea Añadir una Atraccion? (Y/N): ");
+        confirmar = input.nextLine();
+      }
+      while (!confirmar.equals("Y") && !confirmar.equals("N"));
+
+      while(confirmar.equals("Y"))
+      {
+        System.out.print("Seleccione una Atraccion para añadir\n" +
+                         "a la lista de atracciones activas en el periodo de tiempo especificado (numero): ");
+        if (atraccionIndex > counter)
+        {
+          System.out.println("Entrada No Valida");
+        }
+        else
+        {
+          atraccionIndex = input.nextInt();
+          atraccionesSeleccionadas.add(atraccionesDisponibles.get(atraccionIndex));
+          System.out.println("Atracciones Seleccionadas:");
+          for (AtraccionIF atraccion : atraccionesSeleccionadas)
+          {
+            System.out.print("Atraccion " + atraccionesSeleccionadas.indexOf(atraccion) + " tipo: " + atraccion.getTipo() + " - ");
+          }
+
+          do
+          {
+            System.out.println("Desea Añadir una Atraccion? (Y/N): ");
+            confirmar = input.nextLine();
+          }
+          while (!confirmar.equals("Y") && !confirmar.equals("N"));
+        }
+
+      }
+      manager.addAtraccionesFuncionando(periodo, atraccionesSeleccionadas);
+
+      resumenAtraccionesActivas();
+      menuAtracciones();
+
+    }
+
+    private void resumenAtraccionesActivas()
+    {
+      analizador.resumenAtraccionesActivas();
+    }
+
+    private void generarAtraccionesActivas()
+    {
+      manager.setContenidoAtraccionesFuncionando();
+      menuAtraccionesActivas();
+    }
+
+    private void usoAleatorioAtracciones()
+    {
+      manager.randomUsarAtracciones();
+      imprLineaBl();
+      System.out.println("Uso aleatorio de las atracciones generado");
+      menuAtracciones();
+    }
+
+    private void imprLineaBl()
+    {
+      System.out.println();
+    }
+
 }

@@ -57,6 +57,11 @@ public class AnalizadorEstadisticas
         }
       }
 
+      public void resumenAtraccionesActivas()
+      {
+        atraccionesActivas.imprPeriodos();
+      }
+
 
     /**
      * Metodo resumenTrabajadoresTipo
