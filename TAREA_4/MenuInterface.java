@@ -1,6 +1,7 @@
 
 /**
- * Write a description of class MenuInterface here.
+ * Clase que contiene toda la funcionalidad de 
+ * los menus que controlan el programa.
  *
  * @author (your name)
  * @version (a version number or a date)
@@ -26,6 +27,12 @@ public class MenuInterface
        analizador = manager.analisisEstadistico();
    }
 
+   /**
+    * Method menu1
+    * 
+    * Menu Principal del programa
+    *
+    */
    public void menu1()
     {
         imprLineaBl();
@@ -52,9 +59,11 @@ public class MenuInterface
           this.menuAtracciones();
           break;
         case 3:
+          System.out.println("==========================");
           menuTrabajadores();
           break;
         case 4:
+          System.out.println("==========================");
           menuEstadisticas();
           break;
         case 5:
@@ -67,6 +76,13 @@ public class MenuInterface
 
     /////////////////MENUS ENTRADA
 
+    /**
+     * Method menuEntradas
+     * 
+     * Menu principal para toda la funcionalidad
+     * de las entradas
+     *
+     */
     private void menuEntradas()
     {
         imprLineaBl();
@@ -102,6 +118,13 @@ public class MenuInterface
         }
     }
 
+    
+    /**
+     * Method menuNuevaEntrada
+     * 
+     * Menu para crear nueva entrada
+     *
+     */
     private void menuNuevaEntrada()
     {
         imprLineaBl();
@@ -133,6 +156,14 @@ public class MenuInterface
         }
     }
 
+    /**
+     * Method menuNuevaEntradaGeneral
+     * 
+     * Menu para configurar y crear una nueva entrada
+     * General o de niño
+     *
+     * @param nino True si entrada es de niño
+     */
     private void menuNuevaEntradaGeneral(boolean nino)
     {
         try {
@@ -288,6 +319,13 @@ public class MenuInterface
         }
     }
 
+    /**
+     * Method resumenVisitantes
+     * 
+     * Opcion para mostrar resumen de visitantes
+     * del parque
+     *
+     */
     private void resumenVisitantes()
     {
         imprLineaBl();
@@ -298,6 +336,13 @@ public class MenuInterface
 
     //////////// MENUS ATRACCIONES
 
+    /**
+     * Method menuAtracciones
+     * 
+     * Menu principal para la funcionalidad de 
+     * de Atracciones
+     *
+     */
     private void menuAtracciones()
     {
       imprLineaBl();
@@ -341,6 +386,12 @@ public class MenuInterface
 
     }
 
+    /**
+     * Method menuNuevaAtraccion
+     * 
+     * Menu para crear una nueva atraccion
+     *
+     */
     private void menuNuevaAtraccion()
     {
       imprLineaBl();
@@ -363,6 +414,12 @@ public class MenuInterface
 
     }
 
+    /**
+     * Method menuAtraccionesActivas
+     * 
+     * Menu para administrar atracciones activas
+     *
+     */
     private void menuAtraccionesActivas()
     {
       imprLineaBl();
@@ -401,6 +458,14 @@ public class MenuInterface
 
     }
 
+    
+    /**
+     * Method generarAtracciones
+     * 
+     * Menu para generar atracciones del parque
+     * segun el enunciado
+     *
+     */
     private void generarAtracciones()
     {
       GeneradorContenido.generadorContenido(manager);
@@ -410,6 +475,13 @@ public class MenuInterface
       menuAtracciones();
     }
 
+    /**
+     * Method resumenAtracciones
+     * 
+     * Opcion para mostrar resumen de las
+     * atracciones presentes en el parque
+     *
+     */
     private void resumenAtracciones()
     {
       imprLineaBl();
@@ -418,6 +490,13 @@ public class MenuInterface
       menuAtracciones();
     }
 
+    /**
+     * Method menuNuevaAtraccionActiva
+     * 
+     * Menu para crear nuevos periodos de atracciones
+     * activas
+     *
+     */
     private void menuNuevaAtraccionActiva()
     {
       imprLineaBl();
@@ -501,17 +580,38 @@ public class MenuInterface
 
     }
 
+    /**
+     * Method resumenAtraccionesActivas
+     * 
+     * Opcion para mostrar resumen de los 
+     * periodos de atracciones activas
+     *
+     */
     private void resumenAtraccionesActivas()
     {
       analizador.resumenAtraccionesActivas();
     }
 
+    /**
+     * Method generarAtraccionesActivas
+     * 
+     * Menu para generar periodos de atracciones 
+     * activas automaticamente
+     *
+     */
     private void generarAtraccionesActivas()
     {
       manager.setContenidoAtraccionesFuncionando();
       menuAtraccionesActivas();
     }
 
+    /**
+     * Method usoAleatorioAtracciones
+     * 
+     * Menu para generar uso aleatorio de
+     * las atracciones
+     *
+     */
     private void usoAleatorioAtracciones()
     {
       manager.randomUsarAtracciones();
@@ -522,6 +622,13 @@ public class MenuInterface
 
     ///////// MENUS TRABAJADORES
 
+    /**
+     * Method menuTrabajadores
+     * 
+     * Menu principal para la funcionalidad
+     * de los trabajadores
+     *
+     */
     private void menuTrabajadores()
     {
       imprLineaBl();
@@ -549,6 +656,14 @@ public class MenuInterface
       }
     }
 
+    
+    /**
+     * Method resumenTrabajadores
+     * 
+     * Opcion para mostrar resumen de los
+     * trabajadores del parque de atracciones
+     *
+     */
     private void resumenTrabajadores()
     {
       System.out.println("-- Resumen Trabajadores --");
@@ -561,6 +676,13 @@ public class MenuInterface
 
     ////////// MENU Estadisticas
 
+    /**
+     * Method menuEstadisticas
+     * 
+     * Menu principal de la funcionalidad
+     * de estadisticas del sistema
+     *
+     */
     private void menuEstadisticas()
     {
       imprLineaBl();
@@ -603,6 +725,13 @@ public class MenuInterface
       }
     }
 
+    /**
+     * Method estadisticasVisitantes
+     * 
+     * Opcion para generar estadisticas sobre los
+     * visitantes que visitan el parque
+     *
+     */
     private void estadisticasVisitantes()
     {
       System.out.println("Especificar Año: ");
@@ -612,6 +741,13 @@ public class MenuInterface
       menuEstadisticas();
     }
 
+    /**
+     * Method estadisticasPrecios
+     * 
+     * Opcion para generar estadisticas
+     * sobre los precios de las entradas
+     *
+     */
     private void estadisticasPrecios()
     {
       System.out.print("Especificar Año: ");
@@ -621,6 +757,14 @@ public class MenuInterface
       menuEstadisticas();
     }
 
+      
+    /**
+     * Method estadisticasUsoAtracciones
+     * 
+     * Opcion para generar estadisticas sobre
+     * el uso de las atracciones
+     *
+     */
     private void estadisticasUsoAtracciones()
     {
       System.out.print("Especificar Año: ");
@@ -650,6 +794,13 @@ public class MenuInterface
       menuEstadisticas();
     }
 
+    /**
+     * Method estadisticasGastos
+     * 
+     * Opcion para generar estadisticas sobre los gastos
+     * diarios del personal del parque
+     *
+     */
     private void estadisticasGastos()
     {
       System.out.print("Especificar Año: ");

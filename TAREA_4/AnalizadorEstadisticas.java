@@ -905,7 +905,7 @@ public class AnalizadorEstadisticas
     private float round(float d, int decimalPlace)
     {
         BigDecimal n = new BigDecimal(Float.toString(d));
-        n = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
+        n = n.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
         return n.floatValue();
     }
 
