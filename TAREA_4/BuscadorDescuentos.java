@@ -69,11 +69,9 @@ public class BuscadorDescuentos
         }
     }
     
-    public void mostrarDescuentos()
+    public HashMap<String, Float> obtenerDescuentos()
     {
-        for (String descuento : mapaDescuentos.keySet())
-        {
-            System.out.println(descuento + ": " + mapaDescuentos.get(descuento) + "%");
-        }
+        HashMap<String, Float> copiaDescuentos = new HashMap<String, Float>(mapaDescuentos);
+        return copiaDescuentos;
     }
 }

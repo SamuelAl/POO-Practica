@@ -10,6 +10,7 @@
  */
 
 import java.time.LocalDate;
+import java.util.HashMap;
 
 public class MaquinaEntradas
 {
@@ -50,9 +51,10 @@ public class MaquinaEntradas
         entrada.setTemporada();
         entradaActual = entrada;
         if (isFamilia) {setFamilia();}
+        String tmp[];
         if (!descuento.equals("ninguno"))
         {
-            String tmp[] = descuento.split(",");
+            tmp = descuento.split(";");
             for (int i = 0; i < tmp.length; i++)
             {
                 setDescuento(tmp[i]);
@@ -63,6 +65,18 @@ public class MaquinaEntradas
         if (isVIP) {setVIP();}
 
         ultimoAdulto = (EntradaGen)entrada;
+        //Imprimir informacion entrada
+        System.out.println("************************");
+        System.out.println("*   ENTRADA PARQUNED");
+        System.out.println("* Fecha: " + fecha);
+        System.out.println("* Edad: " + edad);
+        if (isVIP) {System.out.println("* VIP");}
+        if (isFamilia) {System.out.println("* Familiar");}
+        System.out.println("* " + entrada.getTipo());
+        System.out.println("* Precio: $" + entrada.getPrecio());
+        System.out.println("************************");
+        System.out.println();
+        
         return entrada;
     }
 
@@ -115,7 +129,20 @@ public class MaquinaEntradas
 
           if (!descuento.equals("ninguno")) {setDescuento(descuento);}
           if (isVIP) {setVIP();}
-          return entrada;
+          
+        System.out.println("************************");
+        System.out.println("*   ENTRADA PARQUNED");
+        System.out.println("* Fecha: " + fecha);
+        System.out.print("* Edad: " + edad);
+        System.out.println(" - NIÑO ACOMPAÑADO");
+        if (isVIP) {System.out.println("* VIP");}
+        if (isFamilia) {System.out.println("* Familiar");}
+        System.out.println("* " + entrada.getTipo());
+        System.out.println("* Precio: $" + entrada.getPrecio());
+        System.out.println("************************");
+        System.out.println();
+          
+        return entrada;
         }
         else
         {
@@ -125,9 +152,9 @@ public class MaquinaEntradas
 
     }
     
-    public void imprimirDescuentosDisponibles()
+    public HashMap<String, Float> obtenerDescuentosDisponibles()
     {
-        buscadorDescuentos.mostrarDescuentos();
+        return buscadorDescuentos.obtenerDescuentos();
     }
 
 

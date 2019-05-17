@@ -9,6 +9,7 @@
 
 import java.util.List;
 import java.util.LinkedList;
+import java.util.HashMap;
 import java.time.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -249,8 +250,8 @@ public class ParqueManager
         return analizador;
     }
     
-    public void imprimirDescuentos()
+    public HashMap<String, Float> obtenerDescuentos()
     {
-        generadorEntradas.imprimirDescuentosDisponibles();
+        return generadorEntradas.obtenerDescuentosDisponibles();
     }
 }

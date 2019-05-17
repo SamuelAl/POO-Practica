@@ -10,5 +10,5 @@ comment3.params=key\ descuento
 comment3.target=void\ addDescuento(java.lang.String,\ float)
 comment3.text=\r\n\ Method\ addDescuento\r\n\r\n\ Metodo\ para\ a\u00F1dir\ nuevos\ descuentos\ \r\n\ al\ objeto\r\n\r\n\ @param\ key\ Identificacion\ del\ descuento\ (String)\r\n\ @param\ descuento\ Valor\ del\ descuento\ (porcentaje\ a\ descontar)\r\n
 comment4.params=
-comment4.target=void\ mostrarDescuentos()
+comment4.target=java.util.HashMap\ obtenerDescuentos()
 numComments=5

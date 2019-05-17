@@ -10,6 +10,7 @@
 
 import java.util.HashMap;
 import java.time.*;
+import java.math.BigDecimal;
 
 public class EntradaGen implements EntradaIF
 {
@@ -61,7 +62,7 @@ public class EntradaGen implements EntradaIF
      */
     public float getPrecio()
     {
-        return precio;
+        return round(precio, 2);
     }
     
     /**
@@ -100,11 +101,20 @@ public class EntradaGen implements EntradaIF
     public String getTipo()
     {
         String tipos = "";
-        for (String key : descuentosApl.keySet())
+        if (descuentosApl.isEmpty())
         {
-            tipos += key + " - ";
+            tipos = "adulto";
         }
-        tipos = tipos.substring(0, tipos.length()-3);
+        
+        else
+        {
+            for (String key : descuentosApl.keySet())
+            {
+                tipos += key + " - ";
+            }
+            tipos = tipos.substring(0, tipos.length()-3);
+        }
+        
         return tipos;
     }
     
@@ -220,5 +230,21 @@ public class EntradaGen implements EntradaIF
             {
                 applyDescuento("Familia" ,PARAMETROS.DESCUENTO_FAMILIA);
             }
+    }
+    
+    /**
+     * Method round
+     *
+     * Metodo para redondear valores float a dos decimales
+     *
+     * @param d Valor a redondear (float)
+     * @param decimalPlace Numero de decimales (entero)
+     * @return Valor redondeado (float)
+     */
+    private float round(float d, int decimalPlace)
+    {
+        BigDecimal bd = new BigDecimal(Float.toString(d));
+        bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
+        return bd.floatValue();
     }
 }
