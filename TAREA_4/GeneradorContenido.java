@@ -65,7 +65,7 @@ public class GeneradorContenido
         //System.out.println("Numero visitantes: " + manager.getNumVisitantes());
 
         // Usar atracciones
-        manager.randomUsarAtracciones();
+        //manager.randomUsarAtracciones();
 
     }
 }

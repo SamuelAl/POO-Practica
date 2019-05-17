@@ -52,10 +52,10 @@ public class MenuInterface
           this.menuAtracciones();
           break;
         case 3:
-          //this.dodge();
+          menuTrabajadores();
           break;
         case 4:
-          //this.exit();
+          menuEstadisticas();
           break;
         case 5:
             System.exit(1);
@@ -333,7 +333,7 @@ public class MenuInterface
         resumenAtracciones();
         break;
       case 6:
-          System.exit(1);
+          menu1();
       default:
         System.out.println("Invalid selection.");
         break;
@@ -372,7 +372,7 @@ public class MenuInterface
       "  1) Nuevo Periodo de Atracciones Activas\n" +
       "  2) Generar Atracciones Activas\n" +
       "  3) Resumen Atracciones Activas\n" +
-      "  5) Salir"
+      "  4) Salir"
       );
 
       int selection = this.input.nextInt();
@@ -400,8 +400,6 @@ public class MenuInterface
       }
 
     }
-
-
 
     private void generarAtracciones()
     {
@@ -521,6 +519,147 @@ public class MenuInterface
       System.out.println("Uso aleatorio de las atracciones generado");
       menuAtracciones();
     }
+
+    ///////// MENUS TRABAJADORES
+
+    private void menuTrabajadores()
+    {
+      imprLineaBl();
+      System.out.println("-- Menu Atracciones --");
+      System.out.println(
+      "Seleccione una opcion: \n" +
+      "  1) Resumen de los Trabajadores\n" +
+      "  2) Salir\n "
+      );
+
+      int selection = this.input.nextInt();
+      input.nextLine();
+
+      switch (selection) {
+      case 1:
+        imprLineaBl();
+        resumenTrabajadores();;
+        break;
+      case 2:
+        menu1();
+        break;
+      default:
+        System.out.println("Invalid selection.");
+        break;
+      }
+    }
+
+    private void resumenTrabajadores()
+    {
+      System.out.println("-- Resumen Trabajadores --");
+      System.out.println("Los trabajadores se generan automaticamente\n" +
+                         "segun las proporciones indicadas cuando se crean\n" +
+                         "nuevas atracciones:");
+      analizador.trabajadoresPorAtraccion();
+      menuTrabajadores();
+    }
+
+    ////////// MENU Estadisticas
+
+    private void menuEstadisticas()
+    {
+      imprLineaBl();
+      System.out.println("-- Menu Estadisticas --");
+      System.out.println(
+      "Seleccione una opcion: \n" +
+      "  1) Informacion Visitantes del Parque\n" +
+      "  2) Informacion Precio Entradas\n" +
+      "  3) Informacion Uso de Atracciones\n" +
+      "  4) Informacion Gastos del Personal Diario\n" +
+      "  5) Salir"
+      );
+
+      int selection = this.input.nextInt();
+      input.nextLine();
+
+      switch (selection) {
+      case 1:
+        imprLineaBl();
+        estadisticasVisitantes();
+        break;
+      case 2:
+        imprLineaBl();
+        estadisticasPrecios();
+        break;
+      case 3:
+        imprLineaBl();
+        estadisticasUsoAtracciones();
+        break;
+      case 4:
+        imprLineaBl();
+        estadisticasGastos();
+        break;
+      case 5:
+        imprLineaBl();
+        menu1();
+      default:
+        System.out.println("Invalid selection.");
+        break;
+      }
+    }
+
+    private void estadisticasVisitantes()
+    {
+      System.out.println("Especificar Año: ");
+      int anno = input.nextInt();
+      imprLineaBl();
+      analizador.resumenVisitantes(anno);
+      menuEstadisticas();
+    }
+
+    private void estadisticasPrecios()
+    {
+      System.out.print("Especificar Año: ");
+      int anno = input.nextInt();
+      imprLineaBl();
+      analizador.resumenPrecios(anno);
+      menuEstadisticas();
+    }
+
+    private void estadisticasUsoAtracciones()
+    {
+      System.out.print("Especificar Año: ");
+      int anno = input.nextInt();
+      List<AtraccionIF> atraccionesDisponibles = manager.getAtracciones();
+      System.out.println("Atracciones Disponibles: ");
+      int counter = 0;
+      for (AtraccionIF atraccion : atraccionesDisponibles)
+      {
+        System.out.println("Atraccion #" + counter + " tipo" + atraccion.getTipo());
+        counter++;
+      }
+
+      int atraccionIndex = 0;
+      System.out.print("Seleccione una Atraccion (numero): ");
+      atraccionIndex = input.nextInt();
+
+      while (atraccionIndex > counter)
+      {
+        System.out.println("Entrada No Valida");
+        System.out.print("Seleccione una Atraccion (numero): ");
+        atraccionIndex = input.nextInt();
+      }
+
+      imprLineaBl();
+      analizador.resumenVisitasAtracciones(anno, atraccionesDisponibles.get(atraccionIndex));
+      menuEstadisticas();
+    }
+
+    private void estadisticasGastos()
+    {
+      System.out.print("Especificar Año: ");
+      int anno = input.nextInt();
+      imprLineaBl();
+      analizador.resumenGastoPersonal(anno);
+      menuEstadisticas();
+    }
+
+    ////////// OTROS
 
     private void imprLineaBl()
     {

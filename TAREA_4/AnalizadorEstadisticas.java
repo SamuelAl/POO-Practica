@@ -87,6 +87,47 @@ public class AnalizadorEstadisticas
         return n;
     }
 
+    public void trabajadoresPorAtraccion()
+    {
+      int counter = 0;
+      for (AtraccionIF atraccion : ListaAtracciones)
+      {
+        List<Trabajador> trabajadores = new LinkedList<Trabajador>(atraccion.getTrabajadores());
+        HashMap<TiposTrabajadores, Integer> contadorTrabajadores = new HashMap();
+        System.out.println("Atraccion #" + counter + " tipo " + atraccion.getTipo() + ": ");
+        counter++;
+
+        for (Trabajador trabajador : trabajadores)
+        {
+          if (!contadorTrabajadores.containsKey(trabajador.getTipo()))
+          {
+              contadorTrabajadores.put(trabajador.getTipo(), 1);
+          }
+          else
+          {
+            contadorTrabajadores.put(trabajador.getTipo(), (contadorTrabajadores.get(trabajador.getTipo()) + 1));
+          }
+        }
+        for (TiposTrabajadores tipo : contadorTrabajadores.keySet())
+        {
+          switch (tipo)
+          {
+            case AYU_ATRACC:
+              System.out.println("Ayudantes de Atraccion: " + contadorTrabajadores.get(tipo));
+              break;
+            case RESP_ATRACC:
+              System.out.println("Responsables de Atraccion: " + contadorTrabajadores.get(tipo));
+              break;
+          }
+        }
+          System.out.println();
+      }
+      System.out.println("Relaciones Publicas: " + resumenTrabajadoresTipo(TiposTrabajadores.REL_PUBLICAS));
+      System.out.println("Atencion al Cliente: " + resumenTrabajadoresTipo(TiposTrabajadores.ATENCION_CL));
+
+      System.out.println();
+    }
+
     /**
      * Metodo resumenVisitantesTipo
      *
@@ -123,9 +164,9 @@ public class AnalizadorEstadisticas
      * Usa funcion analisisPorFecha(ListaEntradas) como soporte.
      *
      */
-    public void resumenVisitantes()
+    public void resumenVisitantes(int year)
     {
-        analisisPorFechas(ListaEntradas);
+        analisisPorFechas(ListaEntradas, year);
     }
 
     /**
@@ -184,14 +225,14 @@ public class AnalizadorEstadisticas
      * El contenido se imprime en pantalla.
      *
      */
-    public void resumenPrecios()
+    public void resumenPrecios(int year)
     {
         int dia = ListaEntradas.get(0).getDate().getDayOfMonth();
         int month = ListaEntradas.get(0).getDate().getMonthValue();
         int daysInMonth = ListaEntradas.get(0).getDate().lengthOfMonth();
         TemporalField woy = WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear();
         int semana = ListaEntradas.get(0).getDate().get(woy);
-        int anno = ListaEntradas.get(0).getDate().getYear();
+        int anno = year;
 
         int contadorDia = 0;
         int contadorSemana = 0;
@@ -293,7 +334,7 @@ public class AnalizadorEstadisticas
                         semana = fecha.get(woy);
 
                         System.out.println("  Total Mes: $" + sumadorMes);
-                        System.out.println("\t\t\t\t    Promedio Mensual: " + promedioPrecio(sumadorMes, contadorMes));
+                        System.out.println("\t\t\t\t    Promedio Mensual: $" + promedioPrecio(sumadorMes, contadorMes));
                         contadorMes = 1;
                         sumadorMes = entrada.getPrecio();
                         contadorAnno++;
@@ -307,11 +348,11 @@ public class AnalizadorEstadisticas
                         contadorSemana++;
                         sumadorSemana += entrada.getPrecio();
 
-                        System.out.println("  Total Mes: " + sumadorMes);
+                        System.out.println("  Total Mes: $" + sumadorMes);
                         System.out.println("\t\t\t\t    Promedio Mensual:$" + promedioPrecio(sumadorMes, contadorMes));
                         contadorMes = 1;
                         sumadorMes = entrada.getPrecio();
-                        System.out.println("Mes: " + month);
+                        System.out.println("Mes: $" + month);
 
                         contadorAnno++;
                         sumadorAnno += entrada.getPrecio();
@@ -320,42 +361,42 @@ public class AnalizadorEstadisticas
 
                 }
             }
-            else
-            {
-               System.out.println("   " + dia + "/" +
-                                           month + "/" +
-                                           anno +
-                                           " - Precio Medio: $" + promedioPrecio(sumadorDia, contadorDia));
-               contadorDia = 1;
-               sumadorDia = entrada.getPrecio();
 
-               System.out.println("    Total Semana: " + sumadorSemana);
-               System.out.println("\t\t\t\t    Promedio Semanal: $" + promedioPrecio(sumadorSemana, contadorSemana));
-               contadorSemana = 1;
-               sumadorSemana = entrada.getPrecio();
-               semana = fecha.get(woy);
+            // {
+            //    System.out.println("   " + dia + "/" +
+            //                                month + "/" +
+            //                                anno +
+            //                                " - Precio Medio: $" + promedioPrecio(sumadorDia, contadorDia));
+            //    contadorDia = 1;
+            //    sumadorDia = entrada.getPrecio();
+            //
+            //    System.out.println("    Total Semana: " + sumadorSemana);
+            //    System.out.println("\t\t\t\t    Promedio Semanal: $" + promedioPrecio(sumadorSemana, contadorSemana));
+            //    contadorSemana = 1;
+            //    sumadorSemana = entrada.getPrecio();
+            //    semana = fecha.get(woy);
+            //
+            //    System.out.println("  Total Mes: " + sumadorMes);
+            //    System.out.println("\t\t\t\t    Promedio Mensual: $" + promedioPrecio(sumadorMes, contadorMes));
+            //    contadorMes = 1;
+            //    sumadorMes = entrada.getPrecio();
+            //
+            //    System.out.println(" Total Año: " + sumadorAnno);
+            //    System.out.println("\t\t\t\t    Promedio Anual: $" + promedioPrecio(sumadorAnno, contadorAnno));
+            //    contadorAnno = 1;
+            //    sumadorAnno = entrada.getPrecio();
+            //
+            //    dia = fecha.getDayOfMonth();
+            //    month = fecha.getMonthValue();
+            //
+            //
+            //    System.out.println("Año: " + anno);
+            //    System.out.println("Mes: " + month);
+            //    System.out.println("  Semana: " + semana);
+            //
+            // }
 
-               System.out.println("  Total Mes: " + sumadorMes);
-               System.out.println("\t\t\t\t    Promedio Mensual: $" + promedioPrecio(sumadorMes, contadorMes));
-               contadorMes = 1;
-               sumadorMes = entrada.getPrecio();
-
-               System.out.println(" Total Año: " + sumadorAnno);
-               System.out.println("\t\t\t\t    Promedio Anual: $" + promedioPrecio(sumadorAnno, contadorAnno));
-               contadorAnno = 1;
-               sumadorAnno = entrada.getPrecio();
-
-               dia = fecha.getDayOfMonth();
-               month = fecha.getMonthValue();
-               anno = fecha.getYear();
-
-               System.out.println("Año: " + anno);
-               System.out.println("Mes: " + month);
-               System.out.println("  Semana: " + semana);
-
-            }
-
-            if (fecha == ultimaFecha)
+            if (fecha == ultimaFecha || fecha.getYear() > year)
             {
                 dia = fecha.getDayOfMonth();
                 month = fecha.getMonthValue();
@@ -364,13 +405,13 @@ public class AnalizadorEstadisticas
                 System.out.println("   " + dia + "/" +
                                        month + "/" +
                                        fecha.getYear() +
-                                       " - Precio Medio: " + promedioPrecio(sumadorDia, contadorDia));
+                                       " - Precio Medio: $" + promedioPrecio(sumadorDia, contadorDia));
 
                 System.out.println("    Total Semana: " + sumadorSemana);
-                System.out.println("\t\t\t\t    Promedio Semanal: " + promedioPrecio(sumadorSemana, contadorSemana));
+                System.out.println("\t\t\t\t    Promedio Semanal: $" + promedioPrecio(sumadorSemana, contadorSemana));
 
                 System.out.println("  Total Mes: " + sumadorMes);
-                System.out.println("\t\t\t\t    Promedio Mensual: " + promedioPrecio(sumadorMes, contadorMes));
+                System.out.println("\t\t\t\t    Promedio Mensual: $" + promedioPrecio(sumadorMes, contadorMes));
 
                 System.out.println(" Total Año: " + sumadorAnno);
                 System.out.println("\t\t\t\t    Promedio Anual: $" + promedioPrecio(sumadorAnno, contadorAnno));
@@ -391,7 +432,7 @@ public class AnalizadorEstadisticas
     private float promedioPrecio (float imp, int n)
     {
       float promedio = (float) (imp*1.0f)/n;
-      return promedio;
+      return round(promedio, 2);
     }
 
     /**
@@ -402,24 +443,15 @@ public class AnalizadorEstadisticas
      * Imprimer resultados en pantalla
      *
      */
-    public void resumenVisitasAtracciones()
+    public void resumenVisitasAtracciones(int year, AtraccionIF atraccion)
     {
-      int counter = 1;
-      String tipo = ListaAtracciones.get(0).getTipo();
-      for (AtraccionIF atraccion : ListaAtracciones)
-      {
-        if (!tipo.equals(atraccion.getTipo()))
-        {
-          tipo = atraccion.getTipo();
-          counter = 1;
-        }
-        System.out.println("Atraccion " + counter + " - Tipo " + atraccion.getTipo());
+
+        System.out.println("Atraccion - Tipo " + atraccion.getTipo());
         List<EntradaIF> usuarios = atraccion.getUsuarios();
 
-        analisisPorFechas(usuarios);
-        counter++;
+        analisisPorFechas(usuarios, year);
+
       }
-    }
 
     /**
      * Method analisisPorFechas
@@ -431,14 +463,14 @@ public class AnalizadorEstadisticas
      *
      * @param listaEntradas A parameter
      */
-    private void analisisPorFechas(List<EntradaIF> listaEntradas)
+    private void analisisPorFechas(List<EntradaIF> listaEntradas, int year)
     {
       int dia = listaEntradas.get(0).getDate().getDayOfMonth();
       int month = listaEntradas.get(0).getDate().getMonthValue();
       int daysInMonth = listaEntradas.get(0).getDate().lengthOfMonth();
       TemporalField woy = WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear();
       int semana = listaEntradas.get(0).getDate().get(woy);
-      int anno = listaEntradas.get(0).getDate().getYear();
+      int anno = year;
 
       int contadorDia = 0;
       int contadorSemana = 0;
@@ -547,41 +579,41 @@ public class AnalizadorEstadisticas
 
               }
           }
-          else
-          {
-             System.out.println("   " + dia + "/" +
-                                         month + "/" +
-                                         anno +
-                                         " - Total Visitantes: " + contadorDia);
-             contadorDia = 1;
+          // else
+          // {
+          //    System.out.println("   " + dia + "/" +
+          //                                month + "/" +
+          //                                anno +
+          //                                " - Total Visitantes: " + contadorDia);
+          //    contadorDia = 1;
+          //
+          //    System.out.println("    Total Semana: " + contadorSemana);
+          //    promedioSemanal = promedioSemanal(contadorSemana);
+          //    System.out.println("\t\t\t\t    Promedio Semanal: " + contadorSemana);
+          //    contadorSemana = 1;
+          //    semana = fecha.get(woy);
+          //
+          //    System.out.println("  Total Mes: " + contadorMes);
+          //    promedioMes = promedioMensual(contadorMes, daysInMonth);
+          //    System.out.println("\t\t\t\t    Promedio Mensual: " + promedioMes);
+          //    contadorMes = 1;
+          //
+          //    System.out.println(" Total Año: " + contadorAnno);
+          //    promedioAnno = promedioAnual(contadorAnno);
+          //    System.out.println("\t\t\t\t    Promedio Anual: " + promedioAnno);
+          //    contadorAnno = 1;
+          //
+          //    dia = fecha.getDayOfMonth();
+          //    month = fecha.getMonthValue();
+          //    anno = fecha.getYear();
+          //
+          //    System.out.println("Año: " + anno);
+          //    System.out.println("Mes: " + month);
+          //    System.out.println("  Semana: " + semana);
+          //
+          // }
 
-             System.out.println("    Total Semana: " + contadorSemana);
-             promedioSemanal = promedioSemanal(contadorSemana);
-             System.out.println("\t\t\t\t    Promedio Semanal: " + contadorSemana);
-             contadorSemana = 1;
-             semana = fecha.get(woy);
-
-             System.out.println("  Total Mes: " + contadorMes);
-             promedioMes = promedioMensual(contadorMes, daysInMonth);
-             System.out.println("\t\t\t\t    Promedio Mensual: " + promedioMes);
-             contadorMes = 1;
-
-             System.out.println(" Total Año: " + contadorAnno);
-             promedioAnno = promedioAnual(contadorAnno);
-             System.out.println("\t\t\t\t    Promedio Anual: " + promedioAnno);
-             contadorAnno = 1;
-
-             dia = fecha.getDayOfMonth();
-             month = fecha.getMonthValue();
-             anno = fecha.getYear();
-
-             System.out.println("Año: " + anno);
-             System.out.println("Mes: " + month);
-             System.out.println("  Semana: " + semana);
-
-          }
-
-          if (fecha == ultimaFecha)
+          if (fecha == ultimaFecha || fecha.getYear() > year)
           {
               dia = fecha.getDayOfMonth();
               month = fecha.getMonthValue();
@@ -872,9 +904,9 @@ public class AnalizadorEstadisticas
      */
     private float round(float d, int decimalPlace)
     {
-        BigDecimal bd = new BigDecimal(Float.toString(d));
-        bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
-        return bd.floatValue();
+        BigDecimal n = new BigDecimal(Float.toString(d));
+        n = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
+        return n.floatValue();
     }
 
 
